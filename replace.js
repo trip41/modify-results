@@ -9,9 +9,9 @@ function kim_replace(config) {
 
   // process data
   this.process = function(data, callback) {
-    var list = data.results[collectionName];
+    var list = data.results[self.collectionName];
     for (var i = 0, len = list.length; i < len; i++) {
-      list[i][attrName] = list[i][attrName].replace(from, to);
+      list[i][self.attrName] = list[i][self.attrName].replace(self.from, self.to);
     }
 
     callback(null, data);
