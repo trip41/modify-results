@@ -1,14 +1,38 @@
-module.exports = function transform(data, callback) {
-  var collectionName = "collection1";
-  var attrName       = "Karma";
+function kim_replace(config) {
+  var self = this;
 
-  var from = "points";
-  var to   = "pts";
+  self.collectionName = config.collectionName;
+  self.attrName  config.attrName;
 
-  var list = data.results[collectionName];
-  for (var i = 0, len = list.length; i < len; i++) {
-    list[i][attrName] = list[i][attrName].replace(from, to);
-  }
+  self.from = config.from;
+  self.to = config.to;
 
-  callback(null, data);
-}
+  // process data
+  this.process = function(data, callback) {
+    var list = data.results[collectionName];
+    for (var i = 0, len = list.length; i < len; i++) {
+      list[i][attrName] = list[i][attrName].replace(from, to);
+    }
+
+    callback(null, data);
+  };
+};
+
+
+
+//module.exports = function replace(data, callback) {
+//  var collectionName = "collection1";
+//  var attrName       = "Karma";
+
+//  var from = "points";
+//  var to   = "pts";
+
+//  var list = data.results[collectionName];
+//  for (var i = 0, len = list.length; i < len; i++) {
+//    list[i][attrName] = list[i][attrName].replace(from, to);
+//  }
+
+//  callback(null, data);
+//}
+
+
