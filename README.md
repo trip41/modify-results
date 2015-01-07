@@ -1,4 +1,4 @@
-A collection of filter function
+A collection of filter functions.
 
 ##Default filters
   - kimSort            
