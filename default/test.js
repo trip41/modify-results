@@ -258,18 +258,21 @@ var data = {
   }
 };
 
-//console.log(Util.getPropByString(data, 'results.News'));
+
+//Util.deletePropByString(data, 'results.News');
+//console.log(Util.getPropByString(data, ''));
+
 
 data = (new kimFilter(data))
   .kimReplace({
     collection: 'News',
-    attrName: 'Karma',
+    property: 'Karma',
     from: 'points',
     to: 'pts'
   })
   .kimSort({
     collection: 'News',
-    attrName: 'ID',
+    property: 'ID',
     lowToHigh: 1
   })
   .kimRenameCollection({
@@ -298,7 +301,7 @@ data = (new kimFilter(data))
     collection: 'NEWS',
     properties: ['key1', 'key2'],
     newProperties: ['num', 'unit'],
-    propName: 'Karma'
+    newProp: 'Karma'
   })
   .kimRenameProperty({
     collection: 'NEWS',
@@ -307,7 +310,7 @@ data = (new kimFilter(data))
   })
   .kimRemoveProp({
     collection: 'NEWS',
-    attrName: 'Title'
+    property: 'Title'
   })
   .kimCustom(function() {
     var data = this.data;
@@ -320,8 +323,27 @@ data = (new kimFilter(data))
     
     return data;
   })
+  .kimSort({
+    collection: 'NEWS',
+    property: 'KM.num',
+    lowToHigh: 1
+  })
+  .kimReplace({
+    collection: 'NEWS',
+    property: 'KM.unit',
+    from: 't',
+    to: 'T'
+  })
+  .kimToInt({
+    collection: 'NEWS',
+    property: 'KM.num',
+  })
   .output();
 
 _.forEach(data.results, function(val, key) {
   console.log(val);
 });
+
+
+//var arr = [ 1 ];
+//console.log(arr.splice(arr.length, 1).join('.') === '');

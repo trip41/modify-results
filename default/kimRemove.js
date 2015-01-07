@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Util = require('./Util.js');
 
 module.exports = function(config) {
   var data = this.data;
@@ -7,7 +8,7 @@ module.exports = function(config) {
   var condFn = config.condFn;
 
   data[collection] = _.filter(data[collection], function(e) {
-    return !condFn(e[property]);
+    return !condFn(Util.getPropByString(e, property));
   });
 
   this.data = data;

@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Util = require('./Util.js');
 
 module.exports = function(config) {
   var data       = this.data;
@@ -8,16 +9,17 @@ module.exports = function(config) {
      ? properties
      : config.newProperties;
 
-  var propName = config.propName;
+  var newProp = config.newProp;
 
   data[collection] = _.map(data[collection], function(e, i) {
     var obj = {};
+
     _.forEach(newProperties, function(key, idx) {
-      obj[key] = e[properties[idx]];
-      delete e[properties[idx]];
+      obj[key] = Util.getPropByString(e, properties[idx]);
+      Util.deletePropByString(e, properties[idx]);
     });
 
-    e[propName] = obj;
+    Util.setPropByString(e, newProp, obj);
     return e;
   });
 

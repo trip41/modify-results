@@ -19,20 +19,20 @@ function kimFilter(data) {
   self.wrapper = data;
   self.data = data.results;
 
-  this.kimSort             = kimSort;
-  this.kimReplace          = kimReplace;
-  this.kimCustom           = kimCustom;
-  this.kimSplit            = kimSplit;
-  this.kimFilter           = kimFilter;
-  this.kimMerge            = kimMerge;
-  this.kimRemove           = kimRemove;
-  this.kimRemoveProp       = kimRemoveProp;
-  this.kimToInt            = kimToInt;
-  this.kimToFloat          = kimToFloat;
-  this.kimRenameCollection = kimRenameCollection;
-  this.kimRenameProperty   = kimRenameProperty;
+  self.kimSort             = kimSort;
+  self.kimReplace          = kimReplace;
+  self.kimCustom           = kimCustom;
+  self.kimSplit            = kimSplit;
+  self.kimFilter           = kimFilter;
+  self.kimMerge            = kimMerge;
+  self.kimRemove           = kimRemove;
+  self.kimRemoveProp       = kimRemoveProp;
+  self.kimToInt            = kimToInt;
+  self.kimToFloat          = kimToFloat;
+  self.kimRenameCollection = kimRenameCollection;
+  self.kimRenameProperty   = kimRenameProperty;
 
-  this.output = function() {
+  self.output = function() {
     self.wrapper.results = self.data;
     return self.wrapper;
   };

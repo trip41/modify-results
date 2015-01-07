@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Util = require('./Util.js');
 
 module.exports = function(config) {
   var data = this.data;
@@ -6,7 +7,7 @@ module.exports = function(config) {
   var property = config.property;
 
   data[collection] = _.map(data[collection], function(e) {
-    e[property] = parseInt(e[property]);
+    Util.setPropByString(e, property, parseInt(Util.getPropByString(e, property)));
     return e;
   });
 

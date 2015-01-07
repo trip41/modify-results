@@ -1,13 +1,15 @@
+var Util = require('./Util.js');
+
 module.exports = function(config) {
   var data           = this.data;
   var collection     = config.collection;
-  var attrName       = config.attrName;
+  var property       = config.property;
   var lowToHigh      = config.lowToHigh === undefined ? 1 : config.lowToHigh;
   var numerical      = config.numerical === undefined ? 1 : config.numerical;
 
   data[collection].sort(function(a, b) {
-    var valA = a[attrName];
-    var valB = b[attrName];
+    var valA = Util.getPropByString(a, property);
+    var valB = Util.getPropByString(b, property);
 
     if(numerical) {
       valA = parseFloat(valA);

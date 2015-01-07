@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Util = require('./Util.js');
 
 module.exports = function(config) {
   var data = this.data;
@@ -8,10 +9,10 @@ module.exports = function(config) {
 
   var list = data[collection];
   for (var i = 0, len = list.length; i < len; i++) {
-    var oldval = list[i][property];
-    delete list[i][property];
+    var oldval = Util.getPropByString(list[i], property);
 
-    list[i][newname] = oldval;
+    Util.deletePropByString(list[i], property);
+    Util.setPropByString(list[i], newname, oldval);
   }
 
   this.data = data;
