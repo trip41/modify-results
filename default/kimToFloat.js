@@ -2,7 +2,7 @@ var _ = require('lodash');
 var Util = require('./Util.js');
 
 module.exports = function(config) {
-  var data = this.data;
+  var data       = this.data;
   var collection = config.collection;
   var property   = config.property;
   var decimal    = config.decimal;

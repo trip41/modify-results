@@ -1,9 +1,9 @@
 var _ = require('lodash');
 
 module.exports = function(config) {
-  var data = this.data;
+  var data       = this.data;
   var collection = config.collection;
-  var attrName = config.attrName;
+  var attrName   = config.attrName;
 
   
 
