@@ -10,6 +10,10 @@ module.exports = function(config) {
   delete data[collection];
   data[newname] = oldval;
 
+  // update current collection if renamed 
+  if(this.currentCollection === collection)
+    this.currentCollection = newname;
+
   this.data = data;
   return this;
 };

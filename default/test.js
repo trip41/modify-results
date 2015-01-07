@@ -264,58 +264,50 @@ var data = {
 
 
 data = (new kimFilter(data))
+  .setCurrCollection('News')
   .kimReplace({
-    collection: 'News',
     property: 'Karma',
     from: 'points',
     to: 'pts'
   })
   .kimSort({
-    collection: 'News',
     property: 'ID',
     lowToHigh: 1
   })
   .kimRenameCollection({
-    collection: 'News',
     newname: 'NEWS'
   })
   .kimSplit({
-    collection: 'NEWS',
     property: 'Karma',
     separator: ' ',
     names: ['key1', 'key2']
   })
   .kimRemove({
-    collection: 'NEWS',
     property: 'key1',
     condFn: function(val) {
       return val === ''
     }
   })
   .kimToFloat({
-    collection: 'NEWS',
     property: 'key1',
     decimal: 2
   })
   .kimMerge({
-    collection: 'NEWS',
     properties: ['key1', 'key2'],
     newProperties: ['num', 'unit'],
     newProp: 'Karma'
   })
   .kimRenameProperty({
-    collection: 'NEWS',
     property: 'Karma',
     newname: 'KM'
   })
   .kimRemoveProp({
-    collection: 'NEWS',
     property: 'Title'
   })
   .kimCustom(function() {
     var data = this.data;
-    var collection = 'NEWS';
     var attr = 'ID';
+    var collection = 'NEWS';
 
     _.forEach(data[collection], function(e, idx) {
       e[attr] = e[attr].substring(0, e[attr].length - 1);
@@ -324,26 +316,36 @@ data = (new kimFilter(data))
     return data;
   })
   .kimSort({
-    collection: 'NEWS',
     property: 'KM.num',
     lowToHigh: 1
   })
   .kimReplace({
-    collection: 'NEWS',
     property: 'KM.unit',
-    from: 't',
-    to: 'T'
+    from: /^pts$/,
+    to: 'pTs'
   })
   .kimToInt({
-    collection: 'NEWS',
     property: 'KM.num',
   })
   .kimToString({
-    collection: 'NEWS',
     property: 'KM',
     fn: function(data) {
       return data.num + ': ' + data.unit;
     }
+  })
+  .kimSplit({
+    property: 'KM',
+    names: ['num', 'unit'],
+    newProp: 'KM',
+    separator: ': '
+  })
+  .kimMerge({
+    properties: ['num', 'unit'],
+    newProp: 'KM',
+    newProperties: ['num', 'unit']
+  })
+  .kimSort({
+    property: 'KM.num'
   })
   .output();
 
