@@ -32,10 +32,11 @@ function kimFilter(data) {
   self.kimRenameCollection = kimRenameCollection;
   self.kimRenameProperty   = kimRenameProperty;
 
-  self.output = function() {
-    self.wrapper.results = self.data;
-    return self.wrapper;
-  };
+};
+
+kimFilter.prototype.output = function() {
+  this.wrapper.results = this.data;
+  return this.wrapper;
 };
 
 module.exports = kimFilter;
