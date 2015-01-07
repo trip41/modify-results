@@ -338,9 +338,16 @@ data = (new kimFilter(data))
     collection: 'NEWS',
     property: 'KM.num',
   })
+  .kimToString({
+    collection: 'NEWS',
+    property: 'KM',
+    fn: function(data) {
+      return data.num + ': ' + data.unit;
+    }
+  })
   .output();
 
-_.forEach(data.results, function(val, key) {
+_.forEach(data.results['NEWS'], function(val, key) {
   console.log(val);
 });
 

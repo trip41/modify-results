@@ -10,14 +10,15 @@ var kimRemoveProp       = require('./kimRemoveProp.js');
 var kimMerge            = require('./kimMerge.js');
 var kimToInt            = require('./kimToInt');
 var kimToFloat          = require('./kimToFloat.js');
+var kimToString         = require('./kimToString.js');
 var kimRenameCollection = require('./kimRenameCollection.js');
 var kimRenameProperty   = require('./kimRenameProperty.js');
 
 
 function kimFilter(data) {
-  var self = this;
+  var self     = this;
   self.wrapper = data;
-  self.data = data.results;
+  self.data    = data.results;
 
   self.kimSort             = kimSort;
   self.kimReplace          = kimReplace;
@@ -29,6 +30,7 @@ function kimFilter(data) {
   self.kimRemoveProp       = kimRemoveProp;
   self.kimToInt            = kimToInt;
   self.kimToFloat          = kimToFloat;
+  self.kimToString         = kimToString;
   self.kimRenameCollection = kimRenameCollection;
   self.kimRenameProperty   = kimRenameProperty;
 

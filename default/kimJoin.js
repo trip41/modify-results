@@ -5,8 +5,6 @@ module.exports = function(config) {
   var collection = config.collection;
   var attrName   = config.attrName;
 
-  
-
   this.data = data;
   return this;
 };
