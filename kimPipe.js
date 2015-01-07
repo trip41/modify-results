@@ -1,4 +1,4 @@
-function kim_pipe(data, callback, filters) {
+module.exports = kimPipe(data, callback, filters) {
   var cb = function(err, data) {
     if(err) return callback(err, data);
   };
