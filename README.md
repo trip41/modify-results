@@ -1,4 +1,4 @@
-A collection of filter functions for Kimonolabs.
+A collection of filter functions.
 
   - kimSort            
   - kimReplace         
