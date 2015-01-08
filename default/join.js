@@ -6,5 +6,4 @@ module.exports = function(config) {
   var attrName   = config.attrName;
 
   this.data = data;
-  return this;
 };

@@ -15,5 +15,4 @@ module.exports = function(config) {
     this.currentCollection = newname;
 
   this.data = data;
-  return this;
 };

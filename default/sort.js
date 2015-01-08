@@ -26,5 +26,4 @@ module.exports = function(config) {
   }
 
   this.data = data;
-  return this;
 };

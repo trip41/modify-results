@@ -1,7 +1,7 @@
 var _         = require('lodash');
 var Util      = require('./Util.js');
 var Q         = require('q');
-var request = require('request');
+var request   = require('request');
 
 var kimFilter = require('./index.js');
 
@@ -264,7 +264,6 @@ var data = {
 
 //Util.deletePropByString(data, 'results.News');
 //console.log(Util.getPropByString(data, ''));
-
 
 new kimFilter(data)
   .setCurrCollection('News')

@@ -12,6 +12,7 @@ module.exports = function(config) {
   var operator   = config.operator;
   var target     = config.target;
 
+  // operator not supported, just skip it
   if(!_.contains(SUPPORTED_OPERATORS, operator))
     return this;
 
@@ -39,5 +40,4 @@ module.exports = function(config) {
   });
 
   this.data = data;
-  return this;
 };
