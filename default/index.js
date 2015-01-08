@@ -4,22 +4,22 @@ var _       = require('lodash');
 var Q       = require('q');
 
 var filters = {
-  kimSort             : require('./kimSort.js'),
-  kimSplit            : require('./kimSplit.js'),
-  kimMerge            : require('./kimMerge.js'),
-  kimToInt            : require('./kimToInt'),
-  kimRemove           : require('./kimRemove.js'),
-  kimCustom           : require('./kimCustom.js'),
-  kimToFloat          : require('./kimToFloat.js'),
-  kimReplace          : require('./kimReplace.js'),
-  kimToString         : require('./kimToString.js'),
-  kimRemoveProp       : require('./kimRemoveProp.js'),
-  kimRenameProperty   : require('./kimRenameProperty.js'),
-  kimRenameCollection : require('./kimRenameCollection.js'),
-  kimCurrencyConvert  : require('./kimCurrencyConvert.js')
+  sort             : require('./sort.js'),
+  split            : require('./split.js'),
+  merge            : require('./merge.js'),
+  toInt            : require('./toInt'),
+  remove           : require('./remove.js'),
+  custom           : require('./custom.js'),
+  toFloat          : require('./toFloat.js'),
+  replace          : require('./replace.js'),
+  toString         : require('./toString.js'),
+  removeProp       : require('./removeProp.js'),
+  renameProperty   : require('./renameProperty.js'),
+  renameCollection : require('./renameCollection.js'),
+  currencyConvert  : require('./currencyConvert.js')
 
   //not ready
-  //kimTimeDateConvert  : require('./kimTimeDateConvert.js')
+  //TimeDateConvert  : require('./TimeDateConvert.js')
 };
 
 function kimFilter(data) {
@@ -46,20 +46,26 @@ function kimFilter(data) {
 };
 
 
-kimFilter.prototype.output = function() {
+kimFilter.prototype.output = function(fn) {
   var self = this;
 
   // execute all tasks sequentially and return the data
   return self.tasks.reduce(function(soFar, task) {
     return soFar.then(function() { return task; });
-  }).then(function() {
-    return self.wrapper;
+  }, Q(0)).then(function() {
+    fn(self.wrapper);
   });
 };
 
 
 kimFilter.prototype.setCurrCollection = function(collection) {
   this.currentCollection = collection;
+  return this;
+};
+
+
+kimFilter.prototype.printData = function() {
+  console.log(this.data);
   return this;
 };
 

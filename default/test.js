@@ -1,7 +1,6 @@
 var _         = require('lodash');
 var Util      = require('./Util.js');
 var Q         = require('q');
-var csv     = require('csv');
 var request = require('request');
 
 var kimFilter = require('./index.js');
@@ -269,46 +268,50 @@ var data = {
 
 new kimFilter(data)
   .setCurrCollection('News')
-  .kimReplace({
+  .replace({
     property: 'Karma',
     from: 'points',
     to: 'pts'
   })
-  .kimSort({
+  .sort({
     property: 'ID',
     lowToHigh: 1
   })
-  .kimRenameCollection({
+  .renameCollection({
     newname: 'NEWS'
   })
-  .kimSplit({
+  .split({
     property: 'Karma',
     separator: ' ',
     names: ['key1', 'key2']
   })
-  .kimRemove({
-    property: 'key1',
-    condFn: function(val) {
-      return val === ''
-    }
+  .remove({
+    property: 'key2',
+    operator: '!==',
+    target: undefined
   })
-  .kimToFloat({
+  .remove({
+    property: 'key1',
+    operator: '<',
+    target: 100
+  })
+  .toFloat({
     property: 'key1',
     decimal: 2
   })
-  .kimMerge({
+  .merge({
     properties: ['key1', 'key2'],
     newProperties: ['num', 'unit'],
     newProp: 'Karma'
   })
-  .kimRenameProperty({
+  .renameProperty({
     property: 'Karma',
     newname: 'KM'
   })
-  .kimRemoveProp({
+  .removeProp({
     property: 'Title'
   })
-  .kimCustom(function() {
+  .custom(function() {
     var data = this.data;
     var attr = 'ID';
     var collection = 'NEWS';
@@ -319,46 +322,45 @@ new kimFilter(data)
     
     return data;
   })
-  .kimSort({
+  .sort({
     property: 'KM.num',
     lowToHigh: 1
   })
-  .kimReplace({
+  .replace({
     property: 'KM.unit',
     from: /^pts$/,
     to: 'pTs'
   })
-  .kimToInt({
+  .toInt({
     property: 'KM.num',
   })
-  .kimToString({
+  .toString({
     property: 'KM',
     fn: function(data) {
       return data.num + ': ' + data.unit;
     }
   })
-  .kimSplit({
+  .split({
     property: 'KM',
     names: ['num', 'unit'],
     newProp: 'KM',
     separator: ': '
   })
-  .kimMerge({
+  .merge({
     properties: ['num', 'unit'],
     newProp: 'KM',
     newProperties: ['num', 'unit']
   })
-  .kimSort({
+  .sort({
     property: 'KM.num'
   })
-  .kimCurrencyConvert({
+  .currencyConvert({
     property: 'KM.num',
     from: 'USD',
     to: 'CAD',
     decimal: 3
   })
-  .output()
-  .then(function(data) {
+  .output(function(data) {
     _.forEach(data.results['NEWS'], function(val, key) {
       console.log(val);
     });
