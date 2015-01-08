@@ -60,7 +60,7 @@ new kimFilter(data)
 
 // will print
 // {
-//   "name": "function_filters",
+//   "name": "sample_input",
 //   "results": {
 //     "collection1": [
 //       { "ID": "1.", "Num": "329", "Unit": "points" },
