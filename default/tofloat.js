@@ -1,11 +1,11 @@
 var _ = require('lodash');
 var Util = require('./Util.js');
 
-module.exports = function(config) {
+module.exports = function(option) {
   var data       = this.data;
-  var collection = config.collection;
-  var property   = config.property;
-  var decimal    = config.decimal;
+  var collection = option.collection;
+  var property   = option.property;
+  var decimal    = option.decimal;
 
   data[collection] = _.map(data[collection], function(e) {
     var val = decimal === undefined

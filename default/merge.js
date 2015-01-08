@@ -1,14 +1,14 @@
 var _ = require('lodash');
 var Util = require('./Util.js');
 
-module.exports = function(config) {
+module.exports = function(option) {
   var data          = this.data;
-  var collection    = config.collection;
-  var properties    = config.properties;
-  var newProp       = config.newProp;
-  var newProperties = config.newProperties === undefined
+  var collection    = option.collection;
+  var properties    = option.properties;
+  var newProp       = option.newProp;
+  var newProperties = option.newProperties === undefined
      ? properties
-     : config.newProperties;
+     : option.newProperties;
 
   data[collection] = _.map(data[collection], function(e, i) {
     var obj = {};

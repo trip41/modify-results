@@ -22,7 +22,7 @@ var filters = {
   //TimeDateConvert  : require('./TimeDateConvert.js')
 };
 
-function kimFilter(data) {
+function KimFilter(data) {
   var self     = this;
   self.wrapper = data;
   self.data    = data.results;
@@ -46,7 +46,7 @@ function kimFilter(data) {
 };
 
 
-kimFilter.prototype.output = function(fn) {
+KimFilter.prototype.output = function(fn) {
   var self = this;
 
   // execute all tasks sequentially and return the data
@@ -58,13 +58,13 @@ kimFilter.prototype.output = function(fn) {
 };
 
 
-kimFilter.prototype.setCurrCollection = function(collection) {
+KimFilter.prototype.setCurrCollection = function(collection) {
   this.currentCollection = collection;
   return this;
 };
 
 
-kimFilter.prototype.printData = function() {
+KimFilter.prototype.printData = function() {
   console.log(this.data);
   return this;
 };
@@ -82,4 +82,4 @@ function preprocess(fn) {
   };
 };
 
-module.exports = kimFilter;
+module.exports = KimFilter;

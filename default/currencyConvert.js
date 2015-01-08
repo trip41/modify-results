@@ -5,14 +5,14 @@ var _       = require('lodash');
 
 var CURRENCY_API = 'http://finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s=${from}${to}=X';
 
-module.exports = function(config) {
+module.exports = function(option) {
   var self       = this;
   var data       = this.data;
-  var collection = config.collection;
-  var property   = config.property;
-  var from       = config.from.toUpperCase();
-  var to         = config.to.toUpperCase();
-  var decimal    = config.decimal;
+  var collection = option.collection;
+  var property   = option.property;
+  var from       = option.from.toUpperCase();
+  var to         = option.to.toUpperCase();
+  var decimal    = option.decimal;
 
   var defer = Q.defer();
   var url = _.template(CURRENCY_API, { from: from, to: to });

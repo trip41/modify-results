@@ -1,11 +1,11 @@
 var Util = require('./Util.js');
 
-module.exports = function(config) {
+module.exports = function(option) {
   var data           = this.data;
-  var collection     = config.collection;
-  var property       = config.property;
-  var lowToHigh      = config.lowToHigh === undefined ? 1 : config.lowToHigh;
-  var numerical      = config.numerical === undefined ? 1 : config.numerical;
+  var collection     = option.collection;
+  var property       = option.property;
+  var lowToHigh      = option.lowToHigh === undefined ? 1 : option.lowToHigh;
+  var numerical      = option.numerical === undefined ? 1 : option.numerical;
 
   data[collection].sort(function(a, b) {
     var valA = Util.getPropByString(a, property);

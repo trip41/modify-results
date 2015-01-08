@@ -2,13 +2,13 @@ var _      = require('lodash');
 var moment = require('moment');
 var Util   = require('./Util.js');
 
-module.exports = function(config) {
+module.exports = function(option) {
   var data          = this.data;
 
-  var collection    = config.collection;
-  var property      = config.property;
-  var fromFormat    = config.fromFormat;
-  var toFormat      = config.toFormat;
+  var collection    = option.collection;
+  var property      = option.property;
+  var fromFormat    = option.fromFormat;
+  var toFormat      = option.toFormat;
 
   _.forEach(data, function(e) {
     var oldval = Util.getPropByString(e, properties);

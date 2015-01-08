@@ -3,7 +3,7 @@ var Util      = require('./Util.js');
 var Q         = require('q');
 var request   = require('request');
 
-var kimFilter = require('./index.js');
+var KimFilter = require('./index.js');
 
 var data = {
   "name": "function_filters",
@@ -265,7 +265,7 @@ var data = {
 //Util.deletePropByString(data, 'results.News');
 //console.log(Util.getPropByString(data, ''));
 
-new kimFilter(data)
+new KimFilter(data)
   .setCurrCollection('News')
   .replace({
     property: 'Karma',

@@ -1,14 +1,14 @@
 var _ = require('lodash');
 var Util = require('./Util.js');
 
-module.exports = function(config) {
+module.exports = function(option) {
   var data       = this.data;
-  var collection = config.collection;
-  var property   = config.property;
-  var separator  = config.separator;
-  var names      = config.names === undefined
+  var collection = option.collection;
+  var property   = option.property;
+  var separator  = option.separator;
+  var names      = option.names === undefined
     ? _.map(data[collection], function(e, i) { return property + '_' + i })
-    : config.names;
+    : option.names;
 
   var prefix = property.split('.').splice(property.length, 1).join('.');
   names = _.map(names, function(name, idx) {

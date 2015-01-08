@@ -5,12 +5,12 @@ var SUPPORTED_OPERATORS = [
   '<', '<=', '>', '>=', '==', '===', '!=', '!=='
 ];
 
-module.exports = function(config) {
+module.exports = function(option) {
   var data       = this.data;
-  var collection = config.collection;
-  var property   = config.property;
-  var operator   = config.operator;
-  var target     = config.target;
+  var collection = option.collection;
+  var property   = option.property;
+  var operator   = option.operator;
+  var target     = option.target;
 
   // operator not supported, just skip it
   if(!_.contains(SUPPORTED_OPERATORS, operator))
