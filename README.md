@@ -22,7 +22,7 @@ A collection of filter functions.
 
 Split one string property into multiple properties according to the separator.
 
-#####Argument
+#####Arguments
   - option (Object): The configuration of this transform. It should contain following properties:
 
     - *collection* (String):        The collection being modified. Optional if current collection has been set previously via setCurrentCollection()
