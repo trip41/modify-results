@@ -47,7 +47,7 @@ var data = {
   }
 };
 
-new kimFilter(data)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .split({
   property: "Karma",
