@@ -1,6 +1,6 @@
 A collection of filter functions.
 
-#Default filters
+#Default transforms
   - sort
   - replace
   - custom
