@@ -18,7 +18,7 @@ A collection of filter functions.
 --------------------------------------------------------------
 #Documentation
 
-###**split**(*option*)
+####.**split**(*option*)
 
 Split one string property into multiple properties according to the separator.
 
