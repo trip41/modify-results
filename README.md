@@ -13,5 +13,4 @@ A collection of filter functions.
   - kimToFloat
   - kimRenameCollection
   - kimRenameProperty 
-
   - kimCurrencyConvert
