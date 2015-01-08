@@ -1,6 +1,10 @@
-var _ = require('lodash');
+var _         = require('lodash');
+var Util      = require('./Util.js');
+var Q         = require('q');
+var csv     = require('csv');
+var request = require('request');
+
 var kimFilter = require('./index.js');
-var Util = require('./Util.js');
 
 var data = {
   "name": "function_filters",
@@ -263,7 +267,7 @@ var data = {
 //console.log(Util.getPropByString(data, ''));
 
 
-data = (new kimFilter(data))
+new kimFilter(data)
   .setCurrCollection('News')
   .kimReplace({
     property: 'Karma',
@@ -347,12 +351,22 @@ data = (new kimFilter(data))
   .kimSort({
     property: 'KM.num'
   })
-  .output();
+  .kimCurrencyConvert({
+    property: 'KM.num',
+    from: 'USD',
+    to: 'CAD',
+    decimal: 3
+  })
+  .output()
+  .then(function(data) {
+    _.forEach(data.results['NEWS'], function(val, key) {
+      console.log(val);
+    });
+  });
 
-_.forEach(data.results['NEWS'], function(val, key) {
-  console.log(val);
-});
 
-
-//var arr = [ 1 ];
-//console.log(arr.splice(arr.length, 1).join('.') === '');
+//request('http://finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s=' + 'USD'+ 'INR' + '=X', function(err, res, body) {
+//  // "USDINR=X",63.1559,"1/7/2015","5:39pm"
+//  var val = body.split(',')[1];
+//  console.log(val)
+//});
