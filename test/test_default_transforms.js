@@ -381,7 +381,127 @@ describe('Kimono JS Transforms', function() {
     //                           RemoveProp
     //==================================================================
     describe('RemoveProp', function() {
-      it('should');
+      var testData;
+      beforeEach(function() { 
+        testData = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
+      });
+      
+      it('should not remove any properties(`property` not found)', function() {
+       (new KimFilter(testData))
+        .setCurrCollection('c1')
+        .removeProp({
+          properties: ['newkey']
+        })
+        .output(function(result) {
+          var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
+          assert.deepEqual(removed, result);
+          done();
+        });
+      });
+
+      it('should remove the property `val`', function() {
+       (new KimFilter(testData))
+        .setCurrCollection('c1')
+        .removeProp({
+          properties: ['val']
+        })
+        .output(function(result) {
+          var removed = { name: 'testData', results: { 'c1': [ { key: 1 }, { key: 2 }, { key: 3 }]}};
+          assert.deepEqual(removed, result);
+          done();
+        });
+      });
+      
+      it('should remove all properties.', function() {
+       (new KimFilter(testData))
+        .setCurrCollection('c1')
+        .removeProp({
+          properties: ['key', 'val']
+        })
+        .output(function(result) {
+          var removed = { name: 'testData', results: { 'c1': [ {}, {}, {}]}};
+          assert.deepEqual(removed, result);
+          done();
+        });
+      });
+    });
+
+
+    //==================================================================
+    //                         renameProperty 
+    //==================================================================
+    describe('renameProperty', function() {
+      var testData;
+      beforeEach(function() { 
+        testData = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
+      });
+      
+      it('should not rename property that does not exist', function(done) {
+       (new KimFilter(testData))
+        .setCurrCollection('c1')
+        .renameProperty({
+          property: 'newkey',
+          newname: 'newprop'
+        })
+        .output(function(result) {
+          var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
+          assert.deepEqual(removed, result);
+          done();
+        });
+      });
+
+      it('should rename `key` to `newkey`', function(done) {
+       (new KimFilter(testData))
+        .setCurrCollection('c1')
+        .renameProperty({
+          property: 'key',
+          newname: 'newkey'
+        })
+        .output(function(result) {
+          var removed = { name: 'testData', results: { 'c1': [ { newkey: 1, val: "data 1"}, { newkey: 2, val: "data 2"}, { newkey: 3, val: "data 3" }]}};
+          assert.deepEqual(removed, result);
+          done();
+        });
+      });
+    });
+
+    //==================================================================
+    //                         renameCollection 
+    //==================================================================
+    describe('renameCollection', function() {
+      var testData;
+      beforeEach(function() { 
+        testData = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
+      });
+
+      it('should not rename the collection which does not exist', function(done) {
+       (new KimFilter(testData))
+        .renameCollection({
+          collection: 'c2',
+          newname: 'c3'
+        })
+        .output(function(result) {
+          var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
+          assert.deepEqual(removed, result);
+          done();
+        });
+      });
+
+      it('should rename `c1` to `c2`', function(done) {
+       (new KimFilter(testData))
+        .renameCollection({
+          collection: 'c1',
+          newname: 'c2'
+        })
+        .output(function(result) {
+          //_.forEach(result.results.c1, function(val, key, idx) {
+          //  console.log(val);
+          //});
+          var removed = { name: 'testData', results: { 'c2': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
+          assert.deepEqual(removed, result);
+          done();
+        });
+      });
     });
   });
 });

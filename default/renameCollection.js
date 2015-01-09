@@ -6,6 +6,8 @@ module.exports = function(option) {
   var collection = option.collection;
   var newname    = option.newname;
 
+  if(data[collection] === undefined)  return;
+
   var oldval = data[collection];
   delete data[collection];
   data[newname] = oldval;

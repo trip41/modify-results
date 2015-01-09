@@ -9,6 +9,7 @@ module.exports = function(option) {
 
   var list = data[collection];
   for (var i = 0, len = list.length; i < len; i++) {
+    if(list[i][property] === undefined) continue;
     var oldval = Util.getPropByString(list[i], property);
 
     Util.deletePropByString(list[i], property);
