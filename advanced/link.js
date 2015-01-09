@@ -7,6 +7,6 @@
 collection = data.results.collection1
 
 collection.forEach(function(curr, idx, arr) {
-	link_array = JSON.parse(curr.link);
+  link_array = JSON.parse(curr.link);
   arr[i] = link_array.join('/').concat('/');
 });
