@@ -45,7 +45,6 @@ function KimFilter(data) {
 
 };
 
-
 KimFilter.prototype.output = function(fn) {
   var self = this;
 
@@ -57,18 +56,10 @@ KimFilter.prototype.output = function(fn) {
   });
 };
 
-
 KimFilter.prototype.setCurrCollection = function(collection) {
   this.currentCollection = collection;
   return this;
 };
-
-
-KimFilter.prototype.printData = function() {
-  console.log(this.data);
-  return this;
-};
-
 
 function preprocess(fn) {
   var self = this;

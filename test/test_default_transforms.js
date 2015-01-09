@@ -1,6 +1,7 @@
 var assert    = require('chai').assert;
 var _         = require('lodash');
 var KimFilter = require('../default');
+var Util      = require('../default/Util.js');
 
 describe('Kimono JS Transforms', function() {
   describe('Basic', function() {
@@ -367,9 +368,6 @@ describe('Kimono JS Transforms', function() {
           target: 0
         })
         .output(function(result) {
-          //_.forEach(result.results.c1, function(val, key, idx) {
-          //  console.log(val);
-          //});
           var filtered = { name: 'testData', results: { 'c1': []}};
           assert.deepEqual(filtered, result);
           done();
@@ -503,5 +501,86 @@ describe('Kimono JS Transforms', function() {
         });
       });
     });
+
+    //==================================================================
+    //                         Utilities
+    //==================================================================
+    describe('setPropByString', function() {
+      var testData;
+      beforeEach(function() {
+        testData = { ID: 1, info: { title: 'Hello World', href: 'https://abc.com' }, value: "193 points" };
+      });
+
+      it('should not modify object if given property does not exist', function() {
+        var copy = _.cloneDeep(testData);
+        Util.setPropByString(copy, 'infoo.href', 'https://abc.com');
+        assert.deepEqual(copy, testData);
+      });
+
+      it('should modify ID', function() {
+        var modified = { ID: 2, info: { title: 'Hello World', href: 'https://abc.com' }, value: "193 points" };
+        Util.setPropByString(testData, 'ID', 2);
+        assert.deepEqual(modified, testData);
+      });
+
+      it('should modify info.href', function() {
+        var modified = { ID: 1, info: { title: 'Hello World', href: 'https://xyz.com' }, value: "193 points" };
+        Util.setPropByString(testData, 'info.href', 'https://xyz.com');
+        assert.deepEqual(modified, testData);
+      });
+    });
+
+    describe('getPropByString', function(){ 
+      var testData;
+      beforeEach(function() {
+        testData = { ID: 1, info: { title: 'Hello World', href: 'https://abc.com' }, value: "193 points" };
+      });
+      
+      it('should get undefined if property doesn\'t exist', function() {
+        var val = Util.getPropByString(testData, 'Id');
+        assert.equal(val, undefined);
+      });
+
+      it('should get the value of ID', function() {
+        var val = Util.getPropByString(testData, 'ID');
+        assert.equal(val, 1);
+      });
+
+      it('should get the value of info.title', function() {
+        var val = Util.getPropByString(testData, 'info.title');
+        assert.equal(val, 'Hello World');
+      });
+    });
+
+    describe('deletePropByString', function() {
+      var testData;
+      beforeEach(function() {
+        testData = { ID: 1, info: { title: 'Hello World', href: 'https://abc.com' }, value: "193 points" };
+      });
+
+      it('should not modify object if property to be deleted does not exist', function() {
+        var deleted = { ID: 1, info: { title: 'Hello World', href: 'https://abc.com' }, value: "193 points" };
+        Util.deletePropByString(testData, 'Id');
+        assert.deepEqual(deleted, testData);
+      });
+
+      it('should delete ID', function() {
+        var deleted = { info: { title: 'Hello World', href: 'https://abc.com' }, value: "193 points" };
+        Util.deletePropByString(testData, 'ID');
+        assert.deepEqual(testData, deleted);
+      });
+
+      it('should delete info.href', function() {
+        var deleted = { ID: 1, info: { title: 'Hello World' }, value: "193 points" };
+        Util.deletePropByString(testData, 'info.href');
+        assert.deepEqual(testData, deleted);
+      });
+
+      it('should delete `info`', function() {
+        var deleted = { ID: 1, value: "193 points" };
+        Util.deletePropByString(testData, 'info');
+        assert.deepEqual(deleted, testData);
+      });
+    })
   });
 });

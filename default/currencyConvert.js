@@ -33,6 +33,6 @@ module.exports = function(option) {
     self.data = data;
     defer.resolve(self);
   });
-  
+
   return defer.promise;
 };

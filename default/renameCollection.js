@@ -6,11 +6,11 @@ module.exports = function(option) {
   var collection = option.collection;
   var newname    = option.newname;
 
+  // invalid collection
   if(data[collection] === undefined)  return;
 
-  var oldval = data[collection];
+  data[newname] = data[collection];
   delete data[collection];
-  data[newname] = oldval;
 
   // update current collection if renamed 
   if(this.currentCollection === collection)

@@ -12,7 +12,7 @@ module.exports = {
           if (candidate !== undefined) {
               obj = candidate;
           } else {
-              break;
+            return;
           }
       }
       return obj[props[i]];
@@ -30,7 +30,7 @@ module.exports = {
       if(candidate !== undefined) {
         obj = candidate;
       } else {
-        break;
+        return;
       }
     }
 
@@ -49,7 +49,7 @@ module.exports = {
       if(candidate !== undefined) {
         obj = candidate;
       } else {
-        break;
+        return;
       }
     }
     
