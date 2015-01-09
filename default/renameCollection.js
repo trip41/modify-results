@@ -2,6 +2,7 @@ var _ = require('lodash');
 var Util = require('./Util.js');
 
 module.exports = function(option) {
+  var mySelf       = this.mySelf;
   var data       = this.data;
   var collection = option.collection;
   var newname    = option.newname;
@@ -13,8 +14,8 @@ module.exports = function(option) {
   delete data[collection];
 
   // update current collection if renamed 
-  if(this.currentCollection === collection)
-    this.currentCollection = newname;
+  if(mySelf.currentCollection === collection)
+    mySelf.setCurrCollection(newname);
 
   this.data = data;
 };

@@ -32,17 +32,8 @@ function KimFilter(data) {
 
   // methods with preprecessing
   _.forEach(filters, function(val, key) {
-    self['_' + key] = preprocess.call(self, val);
+    self[key] = preprocess.call(self, val);
   });
-
-  // wrap kimMethods
-  _.forEach(filters, function(val, key) {
-    self[key] = function(arguments) {
-      self.tasks.push(Q(self['_' + key](arguments)));
-      return self;
-    };
-  });
-
 };
 
 KimFilter.prototype.output = function(fn) {
@@ -51,7 +42,8 @@ KimFilter.prototype.output = function(fn) {
   // execute all tasks sequentially and return the data
   return self.tasks.reduce(function(soFar, task) {
     return soFar.then(function() { return task; });
-  }, Q(0)).then(function() {
+  }, Q(0))
+  .then(function() {
     fn(self.wrapper);
   });
 };
@@ -68,8 +60,15 @@ function preprocess(fn) {
     if(config !== undefined && config instanceof Object && config['collection'] === undefined) {
       config['collection'] = self.currentCollection;
     }
-    
-    return fn.call(self, config);
+
+    if(query && !query.kimByPage) {
+      self.tasks.push(Q(fn.call(self, config)));
+    } else {
+      self.data.forEach(function(entry, idx, arr) {
+        self.tasks.push(Q(fn.call({ data: entry, mySelf: self }, config)));
+      });
+    }
+    return self;
   };
 };
 
