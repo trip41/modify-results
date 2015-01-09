@@ -6,31 +6,7 @@
 
 collection = data.results.collection1
 
-for (var i = 0; i < collection.length; i++){
-	link_array = JSON.parse(collection[i].link);
-	var string = "";
-	for (var j= 0; j < link_array.length; j++){
-		if( j > 0){
-			string = string + '/' + link_array[j];
-		}
-		else{
-			string =  link_array[j];
-		}
-	}
-	collection[i].link = string;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
+collection.forEach(function(curr, idx, arr) {
+	link_array = JSON.parse(curr.link);
+  arr[i] = link_array.join('/').concat('/');
+});
