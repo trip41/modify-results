@@ -223,6 +223,9 @@ describe('Kimono JS Transforms', function() {
       });
     });
 
+    //==================================================================
+    //                           Merge 
+    //==================================================================
     describe('Merge', function() {
       var testData;
       beforeEach(function() { 
@@ -259,7 +262,10 @@ describe('Kimono JS Transforms', function() {
       });
     });
 
-    describe('ToInt', function() {
+    //==================================================================
+    //                           toInt
+    //==================================================================
+    describe('toInt', function() {
       var testData;
       beforeEach(function() { 
         testData = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
@@ -284,6 +290,9 @@ describe('Kimono JS Transforms', function() {
       });
     });
 
+    //==================================================================
+    //                           toFloat
+    //==================================================================
     describe('toFloat', function() {
       var testData;
       beforeEach(function() { 
@@ -310,6 +319,9 @@ describe('Kimono JS Transforms', function() {
       });
     })
 
+    //==================================================================
+    //                           Remove
+    //==================================================================
     describe('Remove', function() {
       var testData;
       beforeEach(function() { 
@@ -365,6 +377,9 @@ describe('Kimono JS Transforms', function() {
       })
     });
 
+    //==================================================================
+    //                           RemoveProp
+    //==================================================================
     describe('RemoveProp', function() {
       it('should');
     });
