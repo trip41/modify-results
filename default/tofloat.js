@@ -10,8 +10,8 @@ module.exports = function(option) {
   data[collection] = _.map(data[collection], function(e) {
     var val = decimal === undefined
       ? parseFloat(Util.getPropByString(e, property))
-      : parseFloat(Util.getPropByString(e, property)).toFixed(decimal);
-    
+      : parseFloat(parseFloat(Util.getPropByString(e, property)).toFixed(decimal));
+
     Util.setPropByString(e, property, val);
     return e;
   });

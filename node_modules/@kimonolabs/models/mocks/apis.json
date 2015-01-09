@@ -1,0 +1,353 @@
+[
+  {
+    "__v": 0,
+    "_id": "546a7d0285e23c0800e4717e",
+    "active": true,
+    "alwayssave": false,
+    "apiVersion": {
+      "_id": "54764991b54e6d080004b671",
+      "__v": 0,
+      "stats": {
+        "duration": 54956,
+        "rows": 30,
+        "failed": 0,
+        "retried": 1,
+        "successful": 1
+      },
+      "date": "2014-11-26T21:43:45.741Z",
+      "number": 2,
+      "apiid": "8hute246"
+    },
+    "authUrl": "",
+    "createdby": "53472acabbacb50800009676",
+    "createdon": "2014-11-17T22:56:02.010Z",
+    "firstClass": false,
+    "frequency": "manually",
+    "id": "8hute246",
+    "lastrun": "2014-11-26T21:44:40.710Z",
+    "lastrunstatus": "success",
+    "lastsuccess": "2014-11-26T21:44:14.968Z",
+    "meta": false,
+    "name": "no href test",
+    "newdata": true,
+    "nextrun": null,
+    "online": true,
+    "parentApiId": "",
+    "realtime": false,
+    "rootDomain": "news.ycombinator.com",
+    "status": "done",
+    "targeturl": "https://news.ycombinator.com/",
+    "userOverrideCollections": false,
+    "userref": {
+      "_id": "53472acabbacb50800009676",
+      "email": "chandra.neal@gmail.com",
+      "name": "Neal Chandra"
+    },
+    "clonedCount": 0,
+    "tags": [
+      "code",
+      "news"
+    ],
+    "credentials": {
+      "password": "",
+      "username": ""
+    },
+    "authEnabled": false,
+    "instructions": {
+      "urls": [],
+      "delay": 0,
+      "collectionprop": "",
+      "api": "",
+      "type": "single",
+      "limit": 1,
+      "generated": "",
+      "nextPageSelector": "",
+      "nextPageRegexObj": "",
+      "paginated": false
+    },
+    "versions": [],
+    "lastversion": 2,
+    "crawledurls": [],
+    "crawlwebhookuris": [],
+    "corsdomains": [],
+    "webhookuris": [],
+    "alertemails": [],
+    "pagescrawled": 0,
+    "otherAttributes": [],
+    "attributes": [],
+    "filterFunction": "",
+    "disabled": false,
+    "apis": [],
+    "apikeys": [],
+    "collectionNames": [
+      "collection1"
+    ],
+    "collections": [
+      [
+        {
+          "name": "property1",
+          "context": {
+            "collection": 0,
+            "index": 0,
+            "attributes": {
+              "href": {
+                "attribute": "href",
+                "value": false,
+                "regex": "/^()(.*?)()$/"
+              },
+              "rel": {
+                "attribute": "rel",
+                "value": false,
+                "regex": "/^()(.*?)()$/"
+              }
+            },
+            "textContent": true,
+            "hiddenElements": false,
+            "numberOfTableNormalizers": 0
+          },
+          "selectorObjects": [
+            {
+            "selector": "table > tbody > tr > td:nth-child(3).title > a:nth-child(1)",
+            "regex": "/^()(.*?)()$/"
+            }
+          ]
+        }
+      ]
+    ],
+    "access": "private"
+  },
+  {
+    "__v": 0,
+    "_id": "546a7d0285e23c0800e4717e",
+    "active": true,
+    "alwayssave": false,
+    "apiVersion": {
+      "_id": "54764991b54e6d080004b671",
+      "__v": 0,
+      "stats": {
+        "duration": 54956,
+        "rows": 30,
+        "failed": 0,
+        "retried": 1,
+        "successful": 1
+      },
+      "date": "2014-11-26T21:43:45.741Z",
+      "number": 2,
+      "apiid": "8hute246"
+    },
+    "authUrl": "",
+    "createdby": "53472acabbacb50800009676",
+    "createdon": "2014-11-17T22:56:02.010Z",
+    "firstClass": false,
+    "frequency": "manually",
+    "id": "8hute246",
+    "lastrun": "2014-11-26T21:44:40.710Z",
+    "lastrunstatus": "success",
+    "lastsuccess": "2014-11-26T21:44:14.968Z",
+    "meta": false,
+    "name": "no href test",
+    "newdata": true,
+    "nextrun": null,
+    "online": true,
+    "parentApiId": "",
+    "realtime": false,
+    "rootDomain": "news.ycombinator.com",
+    "status": "done",
+    "targeturl": "https://news.ycombinator.com/",
+    "userOverrideCollections": false,
+    "userref": {
+      "_id": "53472acabbacb50800009676",
+      "email": "chandra.neal@gmail.com",
+      "name": "Neal Chandra"
+    },
+    "clonedCount": 0,
+    "tags": [
+      "code",
+      "news"
+    ],
+    "credentials": {
+      "password": "",
+      "username": ""
+    },
+    "authEnabled": false,
+    "instructions": {
+      "urls": [],
+      "delay": 0,
+      "collectionprop": "",
+      "api": "",
+      "type": "single",
+      "limit": 1,
+      "generated": "",
+      "nextPageSelector": "",
+      "nextPageRegexObj": "",
+      "paginated": false
+    },
+    "versions": [],
+    "lastversion": 2,
+    "crawledurls": [],
+    "crawlwebhookuris": [],
+    "corsdomains": [],
+    "webhookuris": [],
+    "alertemails": [],
+    "pagescrawled": 0,
+    "otherAttributes": [],
+    "attributes": [],
+    "filterFunction": "",
+    "disabled": false,
+    "apis": [],
+    "apikeys": [],
+    "collectionNames": [
+      "collection1"
+    ],
+    "collections": [
+      [
+        {
+          "name": "property1",
+          "context": {
+            "collection": 0,
+            "index": 0,
+            "attributes": {
+              "href": {
+                "attribute": "href",
+                "value": false,
+                "regex": "/^()(.*?)()$/"
+              },
+              "rel": {
+                "attribute": "rel",
+                "value": false,
+                "regex": "/^()(.*?)()$/"
+              }
+            },
+            "textContent": true,
+            "hiddenElements": false,
+            "numberOfTableNormalizers": 0
+          },
+          "selectorObjects": [
+            {
+            "selector": "table > tbody > tr > td:nth-child(3).title > a:nth-child(1)",
+            "regex": "/^()(.*?)()$/"
+            }
+          ]
+        }
+      ]
+    ],
+    "access": "private"
+  },
+  {
+    "__v": 0,
+    "_id": "546a7d0285e23c0800e4717e",
+    "active": true,
+    "alwayssave": false,
+    "apiVersion": {
+      "_id": "54764991b54e6d080004b671",
+      "__v": 0,
+      "stats": {
+        "duration": 54956,
+        "rows": 30,
+        "failed": 0,
+        "retried": 1,
+        "successful": 1
+      },
+      "date": "2014-11-26T21:43:45.741Z",
+      "number": 2,
+      "apiid": "8hute246"
+    },
+    "authUrl": "",
+    "createdby": "53472acabbacb50800009676",
+    "createdon": "2014-11-17T22:56:02.010Z",
+    "firstClass": false,
+    "frequency": "manually",
+    "id": "8hute246",
+    "lastrun": "2014-11-26T21:44:40.710Z",
+    "lastrunstatus": "success",
+    "lastsuccess": "2014-11-26T21:44:14.968Z",
+    "meta": false,
+    "name": "no href test",
+    "newdata": true,
+    "nextrun": null,
+    "online": true,
+    "parentApiId": "",
+    "realtime": false,
+    "rootDomain": "news.ycombinator.com",
+    "status": "done",
+    "targeturl": "https://news.ycombinator.com/",
+    "userOverrideCollections": false,
+    "userref": {
+      "_id": "53472acabbacb50800009676",
+      "email": "chandra.neal@gmail.com",
+      "name": "Neal Chandra"
+    },
+    "clonedCount": 0,
+    "tags": [
+      "code",
+      "news"
+    ],
+    "credentials": {
+      "password": "",
+      "username": ""
+    },
+    "authEnabled": false,
+    "instructions": {
+      "urls": [],
+      "delay": 0,
+      "collectionprop": "",
+      "api": "",
+      "type": "single",
+      "limit": 1,
+      "generated": "",
+      "nextPageSelector": "",
+      "nextPageRegexObj": "",
+      "paginated": false
+    },
+    "versions": [],
+    "lastversion": 2,
+    "crawledurls": [],
+    "crawlwebhookuris": [],
+    "corsdomains": [],
+    "webhookuris": [],
+    "alertemails": [],
+    "pagescrawled": 0,
+    "otherAttributes": [],
+    "attributes": [],
+    "filterFunction": "",
+    "disabled": false,
+    "apis": [],
+    "apikeys": [],
+    "collectionNames": [
+      "collection1"
+    ],
+    "collections": [
+      [
+        {
+          "name": "property1",
+          "context": {
+            "collection": 0,
+            "index": 0,
+            "attributes": {
+              "href": {
+                "attribute": "href",
+                "value": false,
+                "regex": "/^()(.*?)()$/"
+              },
+              "rel": {
+                "attribute": "rel",
+                "value": false,
+                "regex": "/^()(.*?)()$/"
+              }
+            },
+            "textContent": true,
+            "hiddenElements": false,
+            "numberOfTableNormalizers": 0
+          },
+          "selectorObjects": [
+            {
+            "selector": "table > tbody > tr > td:nth-child(3).title > a:nth-child(1)",
+            "regex": "/^()(.*?)()$/"
+            }
+          ]
+        }
+      ]
+    ],
+    "access": "private"
+  }
+]
