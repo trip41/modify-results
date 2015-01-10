@@ -14,8 +14,8 @@ module.exports = function(option) {
     var vals = Util.getPropByString(e, property).split(separator);
 
     if(names === undefined) {
-      names = _.map(vals, function(val, key, idx) {
-        return property + '_' + idx;
+      names = _.map(vals, function(val, idx, arr) {
+          return property + '_' + idx;
       });
     }
 

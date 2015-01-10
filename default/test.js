@@ -1265,27 +1265,32 @@ var data_bypage = {
 
 new KimFilter(data_bypage)
   .setCurrCollection('News')
-  .replace({
-    property: 'Karma',
-    from: 'points',
-    to: 'pts'
-  })
-  .sort({
-    property: 'ID',
-    lowToHigh: 0
-  })
-  .renameCollection({
-    newname: 'NEWS'
-  })
   .split({
-    //collection: 'NEWS',
     property: 'Karma',
     separator: ' ',
-    names: ['key1', 'key2']
+    names: ['num', 'unit']
   })
+  //.replace({
+  //  property: 'unit',
+  //  from: 'points',
+  //  to: 'pts'
+  //})
+  //.sort({
+  //  property: 'ID',
+  //  lowToHigh: 0
+  //})
+  //.renameCollection({
+  //  newname: 'NEWS'
+  //})
+  //.split({
+  //  //collection: 'NEWS',
+  //  property: 'Karma',
+  //  separator: ' ',
+  //  names: ['key1', 'key2']
+  //})
   //.remove({
   //  property: 'key2',
-  //  operator: '!==',
+  //  operator: '===',
   //  target: undefined
   //})
   //.remove({

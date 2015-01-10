@@ -22,9 +22,10 @@ var filters = {
   //TimeDateConvert  : require('./TimeDateConvert.js')
 };
 
-function KimFilter(data) {
+function KimFilter(data, query) {
   var self     = this;
   self.wrapper = data;
+  self.query   = data.query;
   self.data    = data.results;
 
   self.currentCollection = '';
@@ -32,7 +33,7 @@ function KimFilter(data) {
 
   // methods with preprecessing
   _.forEach(filters, function(val, key) {
-    self[key] = preprocess.call(self, val);
+    self[key] = decorator.call(self, val);
   });
 };
 
@@ -44,6 +45,8 @@ KimFilter.prototype.output = function(fn) {
     return soFar.then(function() { return task; });
   }, Q(0))
   .then(function() {
+    // remove query from data object
+    delete self.wrapper.query;
     fn(self.wrapper);
   });
 };
@@ -53,19 +56,19 @@ KimFilter.prototype.setCurrCollection = function(collection) {
   return this;
 };
 
-function preprocess(fn) {
+function decorator(fn) {
   var self = this;
-  return function(config) {
+  return function(option) {
     // set current collection if not specified
-    if(config !== undefined && config instanceof Object && config['collection'] === undefined) {
-      config['collection'] = self.currentCollection;
+    if(option.collection === undefined) {
+      option['collection'] = self.currentCollection;
     }
 
-    if(query && !query.kimByPage) {
-      self.tasks.push(Q(fn.call(self, config)));
+    if(!self.query.kimbypage) {
+      self.tasks.push(Q(fn.call(self, option)));
     } else {
       self.data.forEach(function(entry, idx, arr) {
-        self.tasks.push(Q(fn.call({ data: entry, mySelf: self }, config)));
+        self.tasks.push(Q(fn.call({ data: entry, myself: self }, option)));
       });
     }
     return self;
