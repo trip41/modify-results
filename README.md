@@ -406,11 +406,11 @@ new KimFilter(data)
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
-//       { "ID": "1", "Karma": "329 points", "link": "https://abc.com" },
-//       { "ID": "2", "Karma": "171 points", "link": "https://def.com" },
-//       { "ID": "3", "Karma": "145 points", "link": "https://hij.com" },
-//       { "ID": "4", "Karma": "49 points", "link": "https://klm.com" },
-//       { "ID": "5", "Karma": "129 points", "link": "https://nop.com" }
+//       { "ID": "1", "Karma": "329 points", "href": "https://abc.com" },
+//       { "ID": "2", "Karma": "171 points", "href": "https://def.com" },
+//       { "ID": "3", "Karma": "145 points", "href": "https://hij.com" },
+//       { "ID": "4", "Karma": "49 points", "href": "https://klm.com" },
+//       { "ID": "5", "Karma": "129 points", "href": "https://nop.com" }
 //     ]
 //   }
 // };
@@ -428,7 +428,8 @@ The replace method searches a string for a specified value, or a regular express
 
     - *collection* (String): The collection being named. Optional if current collection has been set previously via *setCurrentCollection()*.
     - *property*   (String): The property whose value is being searched and modified.
-    - *from*       (String|RegExp): The property whose value is being searched and modified.
+    - *from*       (String|RegExp): The value, or regular expression, that will be replaced by the new value.
+    - *to*         (String|RegExp): The value to replace the searchvalue with.
 
 #####Returns
   - The *this* binding of the KimFilter object being applied.
@@ -451,8 +452,10 @@ var data = {
 
 new KimFilter(data)
 .setCurrentCollection("collection1")
-.renameCollection({
-  newname: 'HackerNews'    
+.replace({
+  property: 'href',
+  from: 'https',
+  to: 'http'
 })
 .output(function(data) {
   console.log(data);
@@ -463,11 +466,11 @@ new KimFilter(data)
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
-//       { "ID": "1", "Karma": "329 points", "link": "https://abc.com" },
-//       { "ID": "2", "Karma": "171 points", "link": "https://def.com" },
-//       { "ID": "3", "Karma": "145 points", "link": "https://hij.com" },
-//       { "ID": "4", "Karma": "49 points", "link": "https://klm.com" },
-//       { "ID": "5", "Karma": "129 points", "link": "https://nop.com" }
+//       { "ID": "1", "Karma": "329 points", "href": "http://abc.com" },
+//       { "ID": "2", "Karma": "171 points", "href": "http://def.com" },
+//       { "ID": "3", "Karma": "145 points", "href": "http://hij.com" },
+//       { "ID": "4", "Karma": "49 points", "href": "http://klm.com" },
+//       { "ID": "5", "Karma": "129 points", "href": "http://nop.com" }
 //     ]
 //   }
 // };
