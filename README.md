@@ -2,22 +2,22 @@ A collection of filter functions.
 
 #Default transforms
   - <a href="#sort">sort</a>
-  - replace
-  - custom
-  - split
-  - filter
-  - merge
-  - remove
-  - removeProp
-  - toInt 
-  - toFloat
-  - renameCollection
-  - renameProperty 
+  - <a href="replace">replace</a>
+  - <a href="custom">custom</a>
+  - <a href="split">split</a>
+  - <a href="filter">filter</a>
+  - <a href="merge">merge</a>
+  - <a href="remove">remove</a>
+  - <a href="removeProp">removeProp</a>
+  - <a href="toInt">toInt </a>
+  - <a href="toFloat">toFloat</a>
+  - <a href="renameCollection">renameCollection</a>
+  - <a href="renameProperty">renameProperty </a>
 
 --------------------------------------------------------------
 #Documentation
 
-####<a name="sort"></a>**split**(*option*)
+####<a name="split"></a>**split**(*option*)
 
 Split one string property into multiple properties according to the separator.
 
@@ -72,7 +72,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**sort**(*option*)
+####<a name="sort"></a>***sort**(*option*)
 
 Sort a collection according to the specified property.
 
@@ -126,7 +126,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**remove**(*option*)
+####<a name="remove">**remove**(*option*)</a>
 
 Remove items in a collection that does not satisfy given conditions
 
@@ -183,7 +183,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**merge**(*option*)
+####<a name="merge">**merge**(*option*)</a>
 
 Merge mutlitple properties into one property.
 
