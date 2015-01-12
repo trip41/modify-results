@@ -5,7 +5,7 @@ module.exports = function(option) {
   var data       = this.data;
   var collection = option.collection;
   var property   = option.property;
-  var decimal    = option.decimal;
+  var decimal    = option.decimal || 0;
 
   data[collection] = _.map(data[collection], function(e) {
     var val = decimal === undefined

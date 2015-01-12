@@ -531,3 +531,61 @@ new KimFilter(data)
 //   }
 // };
 ```
+
+
+--------------------------------------------------------------
+
+####**toFloat**(*option*)
+
+Convert string to floating point number.
+
+#####Arguments
+  - option (Object): The configuration of this transform. It should contain following properties:
+
+    - *collection* (String): The collection being named. Optional if current collection has been set previously via *setCurrentCollection()*.
+    - *property*   (String): The property whose value is being converted.
+    - *decimal*    (String): The number of digits to appear after the decimal point; this may be a value between 0 and 20, inclusive, and implementations may optionally support a larger range of values. If this argument is omitted, it is treated as 0.
+
+#####Returns
+  - The *this* binding of the KimFilter object being applied.
+
+#####Example
+    
+```javascript
+var data = {
+  "name": "sample_input",
+  "results": {
+    "collection1": [
+      { "ID": "1", "Karma": "329.21331", "href": "https://abc.com" },
+      { "ID": "2", "Karma": "171.321", "href": "https://def.com" },
+      { "ID": "3", "Karma": "145.943", "href": "https://hij.com" },
+      { "ID": "4", "Karma": "49.123213", "href": "https://klm.com" },
+      { "ID": "5", "Karma": "129.990", "href": "https://nop.com" }
+    ]
+  }
+};
+
+new KimFilter(data)
+.setCurrentCollection("collection1")
+.toFloat({
+  property: 'Karma',
+  decimal: 3
+})
+.output(function(data) {
+  console.log(data);
+ });
+
+// // will print
+// var data = {
+//   "name": "sample_input",
+//   "results": {
+//     "HackerNews": [
+//       { "ID": "1", "Karma": 329.213, "href": "https://abc.com" },
+//       { "ID": "2", "Karma": 171.321, "href": "https://def.com" },
+//       { "ID": "3", "Karma": 145.943, "href": "https://hij.com" },
+//       { "ID": "4", "Karma": 49.123, "href": "https://klm.com" },
+//       { "ID": "5", "Karma": 129.990, "href": "https://nop.com" }
+//     ]
+//   }
+// };
+```
