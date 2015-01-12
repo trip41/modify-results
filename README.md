@@ -70,3 +70,55 @@ new KimFilter(data)
 //   }
 // };
 ```
+
+
+####**sort**(*option*)
+
+Sort a collection according to the specified property.
+
+#####Arguments
+  - option (Object): The configuration of this transform. It should contain following properties:
+
+    - *collection* (String):        The collection being modified. Optional if current collection has been set previously via *setCurrentCollection()*
+    - *property*   (String):        The property being compared during sort.
+    - *lowToHigh*  (boolean):       Set to 1 to sort in ascending order, 0 otherwise.
+    
+#####Returns
+  - The *this* binding of the KimFilter object being applied.
+  
+#####Example
+    
+```javascript
+var data = {
+  "name": "sample_input",
+  "results": {
+    "collection1": [
+      { "ID": "1.", "Karma": "329 points" },
+      { "ID": "2.", "Karma": "171 points" },
+      { "ID": "3.", "Karma": "145 points" }
+    ]
+  }
+};
+
+new KimFilter(data)
+.setCurrentCollection("collection1")
+.split({
+  property: "Karma",
+  lowToHigh: 1
+})
+.output(function(data) {
+  console.log(data);
+ });
+
+// will print
+// {
+//   "name": "sample_input",
+//   "results": {
+//     "collection1": [
+//       { "ID": "3.", "Num": "145", "Unit": "points" }
+//       { "ID": "2.", "Num": "171", "Unit": "points" },
+//       { "ID": "1.", "Num": "329", "Unit": "points" },
+//     ]
+//   }
+// };
+```
