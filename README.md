@@ -227,16 +227,70 @@ new KimFilter(data)
  });
 
 // will print
-{
+// {
+//   "name": "sample_input",
+//   "results": {
+//     "collection1": [
+//       { "ID": "1", Data: { "data_karma": "329 points", "data_href": "https://abc.com" }},
+//       { "ID": "2", Data: { "data_karma": "171 points", "data_href": "https://def.com" }},
+//       { "ID": "3", Data: { "data_karma": "145 points", "data_href": "https://hij.com" }},
+//       { "ID": "4", Data: { "data_karma": "49 points", "data_href": "https://klm.com" }},
+//       { "ID": "5", Data: { "data_karma": "129 points", "data_href": "https://nop.com" }}
+//     ]
+//   }
+// }
+
+
+--------------------------------------------------------------
+
+####**removeProp**(*option*)
+
+Remove one or more properteis from collection.
+
+#####Arguments
+  - option (Object): The configuration of this transform. It should contain following properties:
+
+    - *collection*    (String):        The collection being modified. Optional if current collection has been set previously via *setCurrentCollection()*
+    - *properties*    (Array[String]): An array of properties being removed.
+    
+#####Returns
+  - The *this* binding of the KimFilter object being applied.
+  
+#####Example
+    
+```javascript
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
-      { "ID": "1", Data: { "data_karma": "329 points", "data_href": "https://abc.com" }},
-      { "ID": "2", Data: { "data_karma": "171 points", "data_href": "https://def.com" }},
-      { "ID": "3", Data: { "data_karma": "145 points", "data_href": "https://hij.com" }},
-      { "ID": "4", Data: { "data_karma": "49 points", "data_href": "https://klm.com" }},
-      { "ID": "5", Data: { "data_karma": "129 points", "data_href": "https://nop.com" }}
+      { "ID": "1", "Karma": "329 points", "href": "https://abc.com" },
+      { "ID": "2", "Karma": "171 points", "href": "https://def.com" },
+      { "ID": "3", "Karma": "145 points", "href": "https://hij.com" },
+      { "ID": "4", "Karma": "49 points", "href": "https://klm.com" },
+      { "ID": "5", "Karma": "129 points", "href": "https://nop.com" }
     ]
   }
-}
+};
 
+new KimFilter(data)
+.setCurrentCollection("collection1")
+.remove({
+  properties: ['Karma', 'href']
+})
+.output(function(data) {
+  console.log(data);
+ });
+
+// will print
+// {
+//   "name": "sample_input",
+//   "results": {
+//     "collection1": [
+//       { "ID": "1" },
+//       { "ID": "2" },
+//       { "ID": "3" },
+//       { "ID": "4" },
+//       { "ID": "5" }
+//     ]
+//   }
+// };
