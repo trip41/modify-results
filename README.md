@@ -72,7 +72,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####<a name="sort">***sort**(*option*)</a>
+####<a name="sort">**sort**(*option*)</a>
 
 Sort a collection according to the specified property.
 
