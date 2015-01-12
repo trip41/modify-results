@@ -64,11 +64,15 @@ function decorator(fn) {
       option['collection'] = self.currentCollection;
     }
 
-    if(!self.query.kimbypage) {
+    //if(false) {
+    if(!self.query || !self.query.kimbypage) {
       self.tasks.push(Q(fn.call(self, option)));
     } else {
       self.data.forEach(function(entry, idx, arr) {
-        self.tasks.push(Q(fn.call({ data: entry, myself: self }, option)));
+        var dataTmp = self.data;
+        self.data = entry;
+        self.tasks.push(Q(fn.call(self, option)));
+        self.data = dataTmp;
       });
     }
     return self;

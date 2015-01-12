@@ -492,7 +492,7 @@ describe('Kimono JS Transforms', function() {
           newname: 'c2'
         })
         .output(function(result) {
-          //_.forEach(result.results.c1, function(val, key, idx) {
+          //_.forEach(result.results.c2, function(val, key, idx) {
           //  console.log(val);
           //});
           var removed = { name: 'testData', results: { 'c2': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};

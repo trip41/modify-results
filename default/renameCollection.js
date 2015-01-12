@@ -14,8 +14,8 @@ module.exports = function(option) {
   delete data[collection];
 
   // update current collection if renamed 
-  if(myself.currentCollection === collection)
-    myself.setCurrCollection(newname);
+  if(this.currentCollection === collection)
+    this.setCurrCollection(newname);
 
   this.data = data;
 };
