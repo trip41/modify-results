@@ -21,21 +21,21 @@ module.exports = function(option) {
 
     switch(operator) {
       case '<':
-        return !(val < target);
+        return val < target;
       case '<=':
-        return !(val <= target);
+        return val <= target;
       case '>':
-        return !(val > target);
+        return val > target;
       case '>=':
-        return !(val >= target);
+        return val >= target;
       case '==':
-        return !(val == target);
+        return val == target;
       case '===':
-        return !(val === target);
+        return val === target;
       case '!=':
-        return !(val != target);
+        return val != target;
       case '!==':
-        return !(val !== target);
+        return val !== target;
     }
   });
 

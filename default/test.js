@@ -1270,99 +1270,35 @@ new KimFilter(data_bypage)
     separator: ' ',
     names: ['num', 'unit']
   })
-  //.replace({
-  //  property: 'unit',
-  //  from: 'points',
-  //  to: 'pts'
-  //})
-  //.sort({
-  //  property: 'ID',
-  //  lowToHigh: 0
-  //})
-  //.renameCollection({
-  //  newname: 'NEWS'
-  //})
-  //.split({
-  //  //collection: 'NEWS',
-  //  property: 'Karma',
-  //  separator: ' ',
-  //  names: ['key1', 'key2']
-  //})
-  //.remove({
-  //  property: 'key2',
-  //  operator: '===',
-  //  target: undefined
-  //})
-  //.remove({
-  //  property: 'key1',
-  //  operator: '<',
-  //  target: 100
-  //})
-  //.toFloat({
-  //  property: 'key1',
-  //  decimal: 2
-  //})
-  //.merge({
-  //  properties: ['key1', 'key2'],
-  //  newProperties: ['num', 'unit'],
-  //  newProp: 'Karma'
-  //})
-  //.renameProperty({
-  //  property: 'Karma',
-  //  newname: 'KM'
-  //})
-  //.removeProp({
-  //  property: 'Title'
-  //})
-  //.custom(function() {
-  //  var data = this.data;
-  //  var attr = 'ID';
-  //  var collection = 'NEWS';
-
-  //  _.forEach(data[collection], function(e, idx) {
-  //    e[attr] = e[attr].substring(0, e[attr].length - 1);
-  //  });
-    
-  //  return data;
-  //})
-  //.sort({
-  //  property: 'KM.num',
-  //  lowToHigh: 1
-  //})
-  //.replace({
-  //  property: 'KM.unit',
-  //  from: /^pts$/,
-  //  to: 'pTs'
-  //})
-  //.toInt({
-  //  property: 'KM.num',
-  //})
-  //.toString({
-  //  property: 'KM',
-  //  fn: function(data) {
-  //    return data.num + ': ' + data.unit;
-  //  }
-  //})
-  //.split({
-  //  property: 'KM',
-  //  names: ['num', 'unit'],
-  //  newProp: 'KM',
-  //  separator: ': '
-  //})
-  //.merge({
-  //  properties: ['num', 'unit'],
-  //  newProp: 'KM',
-  //  newProperties: ['num', 'unit']
-  //})
-  //.sort({
-  //  property: 'KM.num'
-  //})
-  //.currencyConvert({
-  //  property: 'KM.num',
-  //  from: 'USD',
-  //  to: 'CAD',
-  //  decimal: 3
-  //})
+  .remove({
+    property: 'unit',
+    operator: '!==',
+    target: undefined
+  })
+  .replace({
+    property: 'unit',
+    from: 'points',
+    to: 'pts'
+  })
+  .sort({
+    property: 'ID',
+    lowToHigh: 0
+  })
+  .renameCollection({
+    newname: 'NEWS'
+  })
+  .remove({
+    property: 'num',
+    operator: '<',
+    target: 42 
+  })
+  .custom(function(data) {
+    console.log(data);
+    var collection = 'NEWS';
+    data[collection].forEach(function(entry, idx, arr) {
+      entry['timestamp'] = (new Date()).toUTCString();
+    });
+  })
   .output(function(data) {
     _.forEach(data.results, function(val, key) {
       console.log(val);
