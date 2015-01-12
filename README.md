@@ -429,7 +429,7 @@ The replace method searches a string for a specified value, or a regular express
     - *collection* (String): The collection being named. Optional if current collection has been set previously via *setCurrentCollection()*.
     - *property*   (String): The property whose value is being searched and modified.
     - *from*       (String|RegExp): The value, or regular expression, that will be replaced by the new value.
-    - *to*         (String|RegExp): The value to replace the searchvalue with.
+    - *to*         (String|RegExp): The value to replace the *from* with.
 
 #####Returns
   - The *this* binding of the KimFilter object being applied.
@@ -471,6 +471,62 @@ new KimFilter(data)
 //       { "ID": "3", "Karma": "145 points", "href": "http://hij.com" },
 //       { "ID": "4", "Karma": "49 points", "href": "http://klm.com" },
 //       { "ID": "5", "Karma": "129 points", "href": "http://nop.com" }
+//     ]
+//   }
+// };
+```
+
+
+--------------------------------------------------------------
+
+####**toInt**(*option*)
+
+Convert string to integer.
+
+#####Arguments
+  - option (Object): The configuration of this transform. It should contain following properties:
+
+    - *collection* (String): The collection being named. Optional if current collection has been set previously via *setCurrentCollection()*.
+    - *property*   (String): The property whose value is being converted.
+
+#####Returns
+  - The *this* binding of the KimFilter object being applied.
+
+#####Example
+    
+```javascript
+var data = {
+  "name": "sample_input",
+  "results": {
+    "collection1": [
+      { "ID": "1", "Karma": "329 points", "href": "https://abc.com" },
+      { "ID": "2", "Karma": "171 points", "href": "https://def.com" },
+      { "ID": "3", "Karma": "145 points", "href": "https://hij.com" },
+      { "ID": "4", "Karma": "49 points", "href": "https://klm.com" },
+      { "ID": "5", "Karma": "129 points", "href": "https://nop.com" }
+    ]
+  }
+};
+
+new KimFilter(data)
+.setCurrentCollection("collection1")
+.toInt({
+  property: 'ID'
+})
+.output(function(data) {
+  console.log(data);
+ });
+
+// // will print
+// var data = {
+//   "name": "sample_input",
+//   "results": {
+//     "HackerNews": [
+//       { "ID": 1, "Karma": "329 points", "href": "https://abc.com" },
+//       { "ID": 2, "Karma": "171 points", "href": "https://def.com" },
+//       { "ID": 3, "Karma": "145 points", "href": "https://hij.com" },
+//       { "ID": 4, "Karma": "49 points", "href": "https://klm.com" },
+//       { "ID": 5, "Karma": "129 points", "href": "https://nop.com" }
 //     ]
 //   }
 // };
