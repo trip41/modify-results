@@ -17,7 +17,7 @@ A collection of filter functions.
 --------------------------------------------------------------
 #Documentation
 
-####<a name="split"></a>**split**(*option*)
+####<a name="split">**split**(*option*)</a>
 
 Split one string property into multiple properties according to the separator.
 
@@ -243,7 +243,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**removeProp**(*option*)
+####<a name="removeProp">**removeProp**(*option*)</a>
 
 Remove one or more properteis from collection.
 
@@ -299,7 +299,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**renameProperty**(*option*)
+####<a name="renameProperty">**renameProperty**(*option*)</a>
 
 Rename one properties.
 
@@ -358,7 +358,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**renameCollection**(*option*)
+####<a name="renameCollection">**renameCollection**(*option*)</a>
 
 Rename one collection.
 
@@ -418,7 +418,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**replace**(*option*)
+####<a name="replace">**replace**(*option*)</a>
 
 The replace method searches a string for a specified value, or a regular expression, and replace the matched pattern with the given string.
 
@@ -478,7 +478,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**toInt**(*option*)
+####<a name="toInt">**toInt**(*option*)</a>
 
 Convert string to integer.
 
@@ -534,7 +534,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**toFloat**(*option*)
+####<a name="toFloat">**toFloat**(*option*)</a>
 
 Convert string to floating point number.
 
@@ -592,7 +592,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**custom**(*fn*)
+####<a name="custom">**custom**(*fn*)</a>
 
 Apply user-defined transform functions.
 
