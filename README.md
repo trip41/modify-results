@@ -296,3 +296,58 @@ new KimFilter(data)
 //   }
 // };
 ```
+
+
+--------------------------------------------------------------
+
+####**renameProperty**(*option*)
+
+Rename one properties.
+
+#####Arguments
+  - option (Object): The configuration of this transform. It should contain following properties:
+
+    - *collection* (String): The collection being modified. Optional if current collection has been set previously via *setCurrentCollection()*.
+    - *property*   (String): The property being renamed.
+    - *newname*    (String): The new name to be used.
+  
+#####Example
+    
+```javascript
+var data = {
+  "name": "sample_input",
+  "results": {
+    "collection1": [
+      { "ID": "1", "Karma": "329 points", "href": "https://abc.com" },
+      { "ID": "2", "Karma": "171 points", "href": "https://def.com" },
+      { "ID": "3", "Karma": "145 points", "href": "https://hij.com" },
+      { "ID": "4", "Karma": "49 points", "href": "https://klm.com" },
+      { "ID": "5", "Karma": "129 points", "href": "https://nop.com" }
+    ]
+  }
+};
+
+new KimFilter(data)
+.setCurrentCollection("collection1")
+.renameProperty({
+  property: 'href',
+  newname: 'link'
+})
+.output(function(data) {
+  console.log(data);
+ });
+
+// // will print
+// var data = {
+//   "name": "sample_input",
+//   "results": {
+//     "collection1": [
+//       { "ID": "1", "Karma": "329 points", "link": "https://abc.com" },
+//       { "ID": "2", "Karma": "171 points", "link": "https://def.com" },
+//       { "ID": "3", "Karma": "145 points", "link": "https://hij.com" },
+//       { "ID": "4", "Karma": "49 points", "link": "https://klm.com" },
+//       { "ID": "5", "Karma": "129 points", "link": "https://nop.com" }
+//     ]
+//   }
+// };
+```
