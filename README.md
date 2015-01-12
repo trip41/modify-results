@@ -623,7 +623,7 @@ new KimFilter(data)
 .custom(function(data) {
   var collection = 'HackerNews';
   data[collection].forEach(function(entry, idx, arr) {
-    entry['timeStamp'] = (new Date()).toUTCString();
+    entry['timestamp'] = (new Date()).toUTCString();
   });
 })
 .output(function(data) {
@@ -635,11 +635,11 @@ new KimFilter(data)
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
-//       { "ID": "1", "Karma": 329.213, "href": "https://abc.com", "timeStamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
-//       { "ID": "2", "Karma": 171.321, "href": "https://def.com", "timeStamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
-//       { "ID": "3", "Karma": 145.943, "href": "https://hij.com", "timeStamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
-//       { "ID": "4", "Karma": 49.123, "href": "https://klm.com", "timeStamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
-//       { "ID": "5", "Karma": 129.900, "href": "https://nop.com", "timeStamp": "Mon, 12, Jan 2015 3:14:15 GMT" }
+//       { "ID": "1", "Karma": 329.213, "href": "https://abc.com", "timestamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
+//       { "ID": "2", "Karma": 171.321, "href": "https://def.com", "timestamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
+//       { "ID": "3", "Karma": 145.943, "href": "https://hij.com", "timestamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
+//       { "ID": "4", "Karma": 49.123, "href": "https://klm.com", "timestamp": "Mon, 12, Jan 2015 3:14:15 GMT" },
+//       { "ID": "5", "Karma": 129.900, "href": "https://nop.com", "timestamp": "Mon, 12, Jan 2015 3:14:15 GMT" }
 //     ]
 //   }
 // };
