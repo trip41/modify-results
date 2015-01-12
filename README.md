@@ -2,17 +2,17 @@ A collection of filter functions.
 
 #Default transforms
   - <a href="#sort">sort</a>
-  - <a href="replace">replace</a>
-  - <a href="custom">custom</a>
-  - <a href="split">split</a>
-  - <a href="filter">filter</a>
-  - <a href="merge">merge</a>
-  - <a href="remove">remove</a>
-  - <a href="removeProp">removeProp</a>
-  - <a href="toInt">toInt </a>
-  - <a href="toFloat">toFloat</a>
-  - <a href="renameCollection">renameCollection</a>
-  - <a href="renameProperty">renameProperty </a>
+  - <a href="#replace">replace</a>
+  - <a href="#custom">custom</a>
+  - <a href="#split">split</a>
+  - <a href="#filter">filter</a>
+  - <a href="#merge">merge</a>
+  - <a href="#remove">remove</a>
+  - <a href="#removeProp">removeProp</a>
+  - <a href="#toInt">toInt </a>
+  - <a href="#toFloat">toFloat</a>
+  - <a href="#renameCollection">renameCollection</a>
+  - <a href="#renameProperty">renameProperty </a>
 
 --------------------------------------------------------------
 #Documentation
@@ -72,7 +72,7 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####<a name="sort"></a>***sort**(*option*)
+####<a name="sort">***sort**(*option*)</a>
 
 Sort a collection according to the specified property.
 
