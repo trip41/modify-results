@@ -593,12 +593,12 @@ new KimFilter(data)
 
 --------------------------------------------------------------
 
-####**custom**(*option*)
+####**custom**(*fn*)
 
 Apply user-defined transform functions.
 
 #####Arguments
-    - fn (Function): The user-defined transform function being applied. The *data* object will be passed to this function.
+  - fn (Function): The user-defined transform function being applied. The *data* object will be passed to this function.
 
 #####Returns
   - The *this* binding of the KimFilter object being applied.
