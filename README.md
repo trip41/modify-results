@@ -136,7 +136,7 @@ Remove items in a collection that does not satisfy given conditions
 
     - *collection* (String):        The collection being modified. Optional if current collection has been set previously via *setCurrentCollection()*
     - *property*   (String):        The property being tested.
-    - *opreator*   (String):        The operator being used when performing the testing. Operator must be one of <, <=, >, >=, ==, ===, !=, !==.
+    - *opreator*   (String):        The operator being used when comparing property against given target. The operator must be one of <, <=, >, >=, ==, ===, !=, !==.
     - *target*     (String|Number): The target value being compared against when testing.
     
 #####Returns
@@ -149,11 +149,11 @@ var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
-      { "ID": "1.", "Karma": "329 points" },
-      { "ID": "2.", "Karma": "171 points" },
-      { "ID": "3.", "Karma": "145 points" }
-      { "ID": "4.", "Karma": "49 points" },
-      { "ID": "5.", "Karma": "129 points" }
+      { "ID": "1", "Karma": "329 points" },
+      { "ID": "2", "Karma": "171 points" },
+      { "ID": "3", "Karma": "145 points" }
+      { "ID": "4", "Karma": "49 points" },
+      { "ID": "5", "Karma": "129 points" }
     ]
   }
 };
