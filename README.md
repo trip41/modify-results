@@ -1,7 +1,7 @@
 A collection of filter functions.
 
 #Default transforms
-  - [sort](sort)
+  - <a href="#sort">sort</a>
   - replace
   - custom
   - split
