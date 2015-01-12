@@ -362,8 +362,12 @@ Rename one collection.
 #####Arguments
   - option (Object): The configuration of this transform. It should contain following properties:
 
-    - *collection* (String): The collection whose name is modified. Optional if current collection has been set previously via *setCurrentCollection()*.
+    - *collection* (String): The collection being named. Optional if current collection has been set previously via *setCurrentCollection()*.
     - *newname*    (String): The new name to be used.
+
+    Note: if the collection being renamed is the current collection(i.e. via a previous call to *setCurrentCollection()*), current collection will be
+    renamed automatically.
+
   
 #####Example
     
