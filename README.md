@@ -1,7 +1,7 @@
 A collection of filter functions.
 
 #Default transforms
-  - sort
+  - [sort](sort)
   - replace
   - custom
   - split
@@ -17,7 +17,7 @@ A collection of filter functions.
 --------------------------------------------------------------
 #Documentation
 
-####**split**(*option*)
+####<a name="sort"></a>**split**(*option*)
 
 Split one string property into multiple properties according to the separator.
 
