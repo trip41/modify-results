@@ -137,7 +137,7 @@ Remove items in a collection that does not satisfy given conditions
     - *collection* (String):        The collection being modified. Optional if current collection has been set previously via *setCurrentCollection()*
     - *property*   (String):        The property being tested.
     - *opreator*   (String):        The operator being used when comparing property against given target. The operator must be one of <, <=, >, >=, ==, ===, !=, !==.
-    - *target*     (String|Number): The target value being compared against when testing.
+    - *target*     (String|Number|Undefined): The target value being compared against when testing.
     
 #####Returns
   - The *this* binding of the KimFilter object being applied.
