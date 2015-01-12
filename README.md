@@ -13,7 +13,6 @@ A collection of filter functions.
   - toFloat
   - renameCollection
   - renameProperty 
-  - currencyConvert
 
 --------------------------------------------------------------
 #Documentation

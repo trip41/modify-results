@@ -20,6 +20,7 @@ var filters = {
 
   //not ready
   //TimeDateConvert  : require('./TimeDateConvert.js')
+  //currencyConvert  : require('./currencyConvert.js')
 };
 
 function KimFilter(data, query) {
