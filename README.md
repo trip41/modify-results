@@ -643,10 +643,11 @@ new KimFilter(results)
 //   }
 // };
 ```
+--------------------------------------------------------------
 
 ####<a name="deep_selection">Access/modify nested properties in JSON</a>
 To access/modify properties that are nested in an object, dot notation can be used. For example, to sort collection
-based on 'ID',
+based on 'karma', you can do this:
 
 ```javascript
 var results = {
