@@ -12,13 +12,11 @@ A collection of filter functions.
   - <a href="#toInt">toInt </a>
   - <a href="#toFloat">toFloat</a>
   - <a href="#custom">custom</a>
+  - <a href="#deepSelector">deep_selection</a>
 
 --------------------------------------------------------------
 #Documentation
-
-###<a name="selector">Deep Selector</a>
-
-
+  
 ####<a name="split">**split**(*option*)</a>
 
 Split one string property into multiple properties according to the separator.
@@ -57,7 +55,7 @@ new KimFilter(results)
 })
 .output(function(results) {
   console.log(results);
- });
+});
 
 // will print
 // {
@@ -645,3 +643,43 @@ new KimFilter(results)
 //   }
 // };
 ```
+
+####<a name="deep_selection">Access/modify nested properties in JSON</a>
+To access/modify properties that are nested in an object, dot notation can be used. For example, to sort collection
+based on 'ID',
+
+```javascript
+var results = {
+  "name": "sample_input",
+  "results": {
+    "collection1": [
+      { "ID": "2.", Data: { "Karma": 329, "href": "https://test.com" }},
+      { "ID": "1.", Data: { "Karma": 171, "href": "https://test.com" }},
+      { "ID": "3.", Data: { "Karma": 145, "href": "https://test.com" }}
+    ]
+  }
+};
+
+new KimFilter(results)
+.setCurrentCollection("collection1")
+.split({
+  property: "Data.Karma",
+  lowToHigh: 1
+})
+.output(function(results) {
+  console.log(results);
+ });
+
+// will print
+// var results = {
+//   "name": "sample_input",
+//   "results": {
+//     "collection1": [
+//       { "ID": "1.", Data: { "Karma": 329, "href": "https://test.com" }},
+//       { "ID": "2.", Data: { "Karma": 171, "href": "https://test.com" }},
+//       { "ID": "3.", Data: { "Karma": 145, "href": "https://test.com" }}
+//     ]
+//  }
+// };
+```
+
