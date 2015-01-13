@@ -3,7 +3,7 @@ var Util      = require('./Util.js');
 var Q         = require('q');
 var request   = require('request');
 
-var KimFilter = require('./index.js');
+var KimFilter = require('../index.js');
 
 var data = {
   "name": "function_filters",
@@ -1289,10 +1289,10 @@ new KimFilter(data)
   //  operator: '>',
   //  target: 100
   //})
-  .sort({
-    property: 'num',
-    lowToHigh: 0
-  })
+  //.sort({
+  //  property: 'num',
+  //  lowToHigh: 0
+  //})
   //.toFloat({
   //  property: 'key1',
   //  decimal: 2
@@ -1337,12 +1337,12 @@ new KimFilter(data)
       console.log("heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
       console.log("ERR: ", err);
     } else { 
-      //data.results['News'].forEach(function(val, idx, arr) {
-      //  console.log(val);
-      //});
-      data.results.forEach(function(entry, idx, arr) {
-        console.log(entry);
+      data.results['News'].forEach(function(val, idx, arr) {
+        console.log(val);
       });
+      //data.results.forEach(function(entry, idx, arr) {
+      //  console.log(entry);
+      //});
     }
   });
 

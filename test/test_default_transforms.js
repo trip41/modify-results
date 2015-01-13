@@ -437,8 +437,8 @@ describe('Kimono JS Transforms', function() {
        (new KimFilter(testData))
         .setCurrCollection('c1')
         .renameProperty({
-          property: 'newkey',
-          newname: 'newprop'
+          properties: ['newkey'],
+          newnames: ['newprop']
         })
         .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
@@ -451,8 +451,8 @@ describe('Kimono JS Transforms', function() {
        (new KimFilter(testData))
         .setCurrCollection('c1')
         .renameProperty({
-          property: 'key',
-          newname: 'newkey'
+          properties: ['key'],
+          newnames: ['newkey']
         })
         .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ { newkey: 1, val: "data 1"}, { newkey: 2, val: "data 2"}, { newkey: 3, val: "data 3" }]}};

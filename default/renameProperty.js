@@ -3,14 +3,16 @@ var Util = require('./Util.js');
 
 module.exports = function(results, option) {
   var collection = option.collection;
-  var property   = option.property;
-  var newname    = option.newname;
+  var properties   = option.properties;
+  var newnames    = option.newnames;
   var list       = results[collection];
 
   for (var i = 0, len = list.length; i < len; i++) {
-    if(list[i][property] === undefined) continue;
-    var oldval = Util.getPropByString(list[i], property);
-    Util.deletePropByString(list[i], property);
-    Util.setPropByString(list[i], newname, oldval);
+    properties.forEach(function(property, idx, arr) {
+      if(list[i][properties[idx]] === undefined) return;
+      var oldval = Util.getPropByString(list[i], property);
+      Util.deletePropByString(list[i], property);
+      Util.setPropByString(list[i], newnames[idx], oldval);
+    });
   }
 };
