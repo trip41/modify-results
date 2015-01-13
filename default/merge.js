@@ -1,8 +1,8 @@
 var _ = require('lodash');
+var Q = require('q');
 var Util = require('./Util.js');
 
-module.exports = function(option) {
-  var results          = this.results;
+module.exports = function(results, option) {
   var collection    = option.collection;
   var properties    = option.properties;
   var newProp       = option.newProp;
@@ -18,7 +18,5 @@ module.exports = function(option) {
     Util.setPropByString(e, newProp, obj);
     return e;
   });
-
-  this.results = results;
 };
 

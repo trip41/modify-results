@@ -5,8 +5,7 @@ var SUPPORTED_OPERATORS = [
   '<', '<=', '>', '>=', '==', '===', '!=', '!=='
 ];
 
-module.exports = function(option) {
-  var results       = this.results;
+module.exports = function(results, option) {
   var collection = option.collection;
   var property   = option.property;
   var operator   = option.operator;
@@ -38,6 +37,4 @@ module.exports = function(option) {
         return val !== target;
     }
   });
-
-  this.results = results;
 };

@@ -1,8 +1,7 @@
 var _ = require('lodash');
 var Util = require('./Util.js');
 
-module.exports = function(option) {
-  var results       = this.results;
+module.exports = function(results, option) {
   var collection = option.collection;
   var property   = option.property;
   var separator  = option.separator;
@@ -32,7 +31,5 @@ module.exports = function(option) {
     Util.deletePropByString(e, property);
     return e;
   });
-
-  this.results = results;
 };
 

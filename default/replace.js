@@ -1,18 +1,19 @@
 var Util = require('./Util.js');
+var Q = require('q');
 
-module.exports = function(option) {
-  var results       = this.results;
+module.exports = function(results, option) {
   var collection = option.collection;
   var property   = option.property;
-
-  var from = option.from;
-  var to   = option.to;
+  var from       = option.from;
+  var to         = option.to;
 
   // process results
   var list = results[collection];
   for (var i = 0, len = list.length; i < len; i++) {
-    Util.setPropByString(list[i], property, Util.getPropByString(list[i], property).replace(from, to));
+    try {
+      Util.setPropByString(list[i], property, Util.getPropByString(list[i], property).replace(from, to));
+    } catch(err) {
+      throw err;
+    };
   }
-
-  this.results = results;
 };

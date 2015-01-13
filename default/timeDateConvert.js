@@ -2,9 +2,7 @@ var _      = require('lodash');
 var moment = require('moment');
 var Util   = require('./Util.js');
 
-module.exports = function(option) {
-  var results          = this.results;
-
+module.exports = function(results, option) {
   var collection    = option.collection;
   var property      = option.property;
   var fromFormat    = option.fromFormat;
@@ -15,7 +13,5 @@ module.exports = function(option) {
     var newval = moment(oldval, fromFormat).format(toFormat);
     Util.setPropByString(e, property, newval);
   });
-
-  this.results = results;
 };
 

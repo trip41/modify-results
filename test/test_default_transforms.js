@@ -16,7 +16,7 @@ describe('Kimono JS Transforms', function() {
 
     it('`output()` should not modify data', function(done) {
       (new KimFilter(testData))
-      .output(function(copy){ 
+      .output(function(err, copy){ 
         assert.equal(_.isEqual(testData, copy), true);
         done();
       });
@@ -25,7 +25,7 @@ describe('Kimono JS Transforms', function() {
     it('`setCurrCollection()` should not modify data', function(done) {
       new KimFilter(testData)
       .setCurrCollection('NewCollection')
-      .output(function(copy) {
+      .output(function(err, copy) {
         assert.equal(_.isEqual(testData, copy), true);
         done();
       });
@@ -49,7 +49,7 @@ describe('Kimono JS Transforms', function() {
           property: 'key',
           lowToHigh: 0
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var sorted = { name: 'testData', results: { 'c1': [ { key: 3, val: "data3"}, { key: 2, val: "data2"}, { key: 1, val: "data1" }]}};
           assert.equal(_.isEqual(result, sorted), true);
           done();
@@ -62,7 +62,7 @@ describe('Kimono JS Transforms', function() {
         .sort({
           property: 'key',
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var sorted = { name: 'testData', results: { 'c1': [ { key: 1, val: "data1"}, { key: 2, val: "data2"}, { key: 3, val: "data3" }]}};
 
           assert.equal(_.isEqual(result, sorted), true);
@@ -84,7 +84,7 @@ describe('Kimono JS Transforms', function() {
           from: '',
           to: ''
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var replaced = { name: 'testData', results: { 'c1': [ { key: 1, val: "data1"}, { key: 2, val: "data2"}, { key: 3, val: "data3" }]}};
           assert.equal(_.isEqual(replaced, result), true);
           done();
@@ -100,7 +100,7 @@ describe('Kimono JS Transforms', function() {
           from: '123',
           to: '()'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var replaced = { name: 'testData', results: { 'c1': [ { key: 1, val: "data1"}, { key: 2, val: "data2"}, { key: 3, val: "data3" }]}};
           assert.equal(_.isEqual(replaced, result), true);
           done();
@@ -116,7 +116,7 @@ describe('Kimono JS Transforms', function() {
           from: 'data',
           to: 'value'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var replaced = { name: 'testData', results: { 'c1': [ { key: 1, val: "value1"}, { key: 2, val: "value2"}, { key: 3, val: "value3" }]}};
           assert.equal(_.isEqual(replaced, result), true);
           done();
@@ -131,7 +131,7 @@ describe('Kimono JS Transforms', function() {
           from: /[123]$/,
           to: '.'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var replaced = { name: 'testData', results: { 'c1': [ { key: 1, val: "data."}, { key: 2, val: "data."}, { key: 3, val: "data." }]}};
           assert.equal(_.isEqual(replaced, result), true);
           done();
@@ -157,7 +157,7 @@ describe('Kimono JS Transforms', function() {
           separator: ' ',
           names: ['first', 'second']
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var splited = { name: 'testData', results: { 'c1': [ { key: 1, first: 'data', second: '1'}, { key: 2, first: 'data', second: '2'}, { key: 3, first: 'data', second: '3'}]}};
           assert.equal(_.isEqual(splited, result), true);
           done();
@@ -171,7 +171,7 @@ describe('Kimono JS Transforms', function() {
           property: 'val',
           separator: ' ',
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var splited = { name: 'testData', results: { 'c1': [ { key: 1, val_1: 'data', val_2: '1'}, { key: 2, val_1: 'data', val_2: '2'}, { key: 3, val_1: 'data', val_2: '3'}]}};
           assert.equal(_.isEqual(splited, result), true);
           done();
@@ -186,7 +186,7 @@ describe('Kimono JS Transforms', function() {
           separator: ' ',
           names: ['first']
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var splited = { name: 'testData', results: { 'c1': [ { key: 1, first: 'data' }, { key: 2, first: 'data' }, { key: 3, first: 'data' }]}};
           assert.deepEqual(result, splited);
           done();
@@ -200,7 +200,7 @@ describe('Kimono JS Transforms', function() {
           property: 'val',
           separator: '*',
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var splited = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
           assert.deepEqual(result, splited);
           done();
@@ -215,7 +215,7 @@ describe('Kimono JS Transforms', function() {
           separator: '*',
           names: ['newval']
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var splited = { name: 'testData', results: { 'c1': [ { key: 1, newval: "data 1"}, { key: 2, newval: "data 2"}, { key: 3, newval: "data 3" }]}};
           assert.equal(_.isEqual(splited, result), true);
           done();
@@ -239,7 +239,7 @@ describe('Kimono JS Transforms', function() {
           properties: ['key', 'val'],
           newProp: 'key_val',
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var merged = { name: 'testData', results: { 'c1': [ { key_val: { key: 1, val: "data 1"} }, { key_val: { key: 2, val: "data 2"} }, { key_val: { key: 3, val: "data 3"} } ]}};
           assert.deepEqual(merged, result);
           done();
@@ -254,7 +254,7 @@ describe('Kimono JS Transforms', function() {
           newProp: 'key_val',
           newProperties: ['subkey', 'subval']
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var merged = { name: 'testData', results: { 'c1': [ { key_val: { subkey: 1, subval: "data 1"} }, { key_val: { subkey: 2, subval: "data 2"} }, { key_val: { subkey: 3, subval: "data 3"} } ]}};
           assert.deepEqual(merged, result);
           done();
@@ -282,7 +282,7 @@ describe('Kimono JS Transforms', function() {
         .toInt({
           property: 'second'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var withInt = { name: 'testData', results: { 'c1': [ { key: 1, first: 'data', second: 1}, { key: 2, first: 'data', second: 2}, { key: 3, first: 'data', second: 3 }]}};
           assert.deepEqual(withInt, result);
           done();
@@ -311,7 +311,7 @@ describe('Kimono JS Transforms', function() {
           property: 'second',
           decimal: 3
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var withFloat = { name: 'testData', results: { 'c1': [ { key: 1, first: 'data', second: 1.281}, { key: 2, first: 'data', second: 2.232}, { key: 3, first: 'data', second: 3.324}]}};
           assert.deepEqual(withFloat, result);
           done();
@@ -336,7 +336,7 @@ describe('Kimono JS Transforms', function() {
           operator: '===',
           target: 5
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var filtered = { name: 'testData', results: { 'c1': [ { key: 1, first: 'data', second: 1.281}, { key: 2, first: 'data', second: 2.232}, { key: 3, first: 'data', second: 3.324}]}};
           assert.deepEqual(filtered, result);
           done();
@@ -351,7 +351,7 @@ describe('Kimono JS Transforms', function() {
           operator: '<=',
           target: 2
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var filtered = { name: 'testData', results: { 'c1': [ { key: 1, first: 'data', second: 1.281} ]}};
           assert.deepEqual(filtered, result);
           done();
@@ -366,7 +366,7 @@ describe('Kimono JS Transforms', function() {
           operator: '>',
           target: 0
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var filtered = { name: 'testData', results: { 'c1': []}};
           assert.deepEqual(filtered, result);
           done();
@@ -389,7 +389,7 @@ describe('Kimono JS Transforms', function() {
         .removeProp({
           properties: ['newkey']
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
           assert.deepEqual(removed, result);
           done();
@@ -402,7 +402,7 @@ describe('Kimono JS Transforms', function() {
         .removeProp({
           properties: ['val']
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ { key: 1 }, { key: 2 }, { key: 3 }]}};
           assert.deepEqual(removed, result);
           done();
@@ -415,7 +415,7 @@ describe('Kimono JS Transforms', function() {
         .removeProp({
           properties: ['key', 'val']
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ {}, {}, {}]}};
           assert.deepEqual(removed, result);
           done();
@@ -440,7 +440,7 @@ describe('Kimono JS Transforms', function() {
           property: 'newkey',
           newname: 'newprop'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
           assert.deepEqual(removed, result);
           done();
@@ -454,7 +454,7 @@ describe('Kimono JS Transforms', function() {
           property: 'key',
           newname: 'newkey'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ { newkey: 1, val: "data 1"}, { newkey: 2, val: "data 2"}, { newkey: 3, val: "data 3" }]}};
           assert.deepEqual(removed, result);
           done();
@@ -477,7 +477,7 @@ describe('Kimono JS Transforms', function() {
           collection: 'c2',
           newname: 'c3'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
           assert.deepEqual(removed, result);
           done();
@@ -490,7 +490,7 @@ describe('Kimono JS Transforms', function() {
           collection: 'c1',
           newname: 'c2'
         })
-        .output(function(result) {
+        .output(function(err, result) {
           //_.forEach(result.results.c2, function(val, key, idx) {
           //  console.log(val);
           //});

@@ -5,7 +5,7 @@ var request   = require('request');
 
 var KimFilter = require('./index.js');
 
-var results = {
+var data = {
   "name": "function_filters",
   "count": 30,
   "frequency": "Manual Crawl",
@@ -1263,83 +1263,87 @@ var data_bypage = {
 //Util.deletePropByString(results, 'results.News');
 //console.log(Util.getPropByString(results, ''));
 
-new KimFilter(data_bypage)
+new KimFilter(data)
   .setCurrCollection('News')
-  .sort({
-    property: 'ID',
-    lowToHigh: 1
-  })
-  .renameCollection({
-    newname: 'NEWS'
-  })
   .split({
-    //collection: 'NEWS',
     property: 'Karma',
     separator: ' ',
-    names: ['key1', 'key2']
+    names: ['num', 'unit']
   })
   .remove({
-    property: 'key2',
+    property: 'unit',
     operator: '!==',
     target: undefined
   })
+  .toInt({
+    property: 'num'
+  })
+  .currencyConvert({
+    property: 'num',
+    from: 'USD',
+    to: 'CAD',
+    decimal: 3
+  })
   //.remove({
-  //  property: 'key1',
-  //  operator: '<',
+  //  property: 'num',
+  //  operator: '>',
   //  target: 100
   //})
-  .toFloat({
-    property: 'key1',
-    decimal: 2
-  })
-  .merge({
-    properties: ['key1', 'key2'],
-    newProperties: ['num', 'unit'],
-    newProp: 'Karma'
-  })
-  .renameProperty({
-    property: 'Karma',
-    newname: 'KM'
-  })
-  .removeProp({
-    properties: ['Title']
-  })
   .sort({
-    property: 'KM.num',
-    lowToHigh: 1
+    property: 'num',
+    lowToHigh: 0
   })
-  .replace({
-    property: 'KM.unit',
-    from: /^pts$/,
-    to: 'pTs'
-  })
-  .toInt({
-    property: 'KM.num',
-  })
-  .merge({
-    properties: ['KM.num', 'KM.unit'],
-    newProp: 'New_KM',
-    newProperties: ['km_num', 'km_unit']
-  })
-  .removeProp({
-    properties: ['KM'],
-  })
-  .sort({
-    property: 'New_KM.km_num'
-  })
-  //.currencyConvert({
-  //  property: 'New_KM.km_num',
-  //  from: 'USD',
-  //  to: 'CAD',
-  //  decimal: 3
+  //.toFloat({
+  //  property: 'key1',
+  //  decimal: 2
   //})
-  .output(function(data) {
-    _.forEach(data.results, function(val, key) {
-      console.log('===========================');
-      val['NEWS'].forEach(function(val, idx, arr) {
-        console.log(val);
-      })
-    });
+  //.merge({
+  //  properties: ['key1', 'key2'],
+  //  newProperties: ['num', 'unit'],
+  //  newProp: 'Karma'
+  //})
+  //.renameProperty({
+  //  property: 'Karma',
+  //  newname: 'KM'
+  //})
+  //.removeProp({
+  //  properties: ['Title']
+  //})
+  //.sort({
+  //  property: 'KM.num',
+  //  lowToHigh: 1
+  //})
+  //.replace({
+  //  property: 'KM.unit',
+  //  from: /^pts$/,
+  //  to: 'pTs'
+  //})
+  //.toInt({
+  //  property: 'KM.num',
+  //})
+  //.merge({
+  //  properties: ['KM.num', 'KM.unit'],
+  //  newProp: 'New_KM',
+  //  newProperties: ['km_num', 'km_unit']
+  //})
+  //.removeProp({
+  //  properties: ['KM'],
+  //})
+  //.sort({
+  //  property: 'New_KM.km_num'
+  //})
+  .output(function(err, data) {
+    if(err) {
+      console.log("heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+      console.log("ERR: ", err);
+    } else { 
+      //data.results['News'].forEach(function(val, idx, arr) {
+      //  console.log(val);
+      //});
+      data.results.forEach(function(entry, idx, arr) {
+        console.log(entry);
+      });
+    }
   });
 
 

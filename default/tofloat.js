@@ -1,8 +1,7 @@
 var _ = require('lodash');
 var Util = require('./Util.js');
 
-module.exports = function(option) {
-  var results       = this.results;
+module.exports = function(results, option) {
   var collection = option.collection;
   var property   = option.property;
   var decimal    = option.decimal;
@@ -15,6 +14,4 @@ module.exports = function(option) {
     Util.setPropByString(e, property, val);
     return e;
   });
-
-  this.results = results;
 };

@@ -5,34 +5,27 @@ var _       = require('lodash');
 
 var CURRENCY_API = 'http://finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s=${from}${to}=X';
 
-module.exports = function(option) {
-  var self       = this;
-  var results       = this.results;
+module.exports = function(results, option) {
   var collection = option.collection;
   var property   = option.property;
   var from       = option.from.toUpperCase();
   var to         = option.to.toUpperCase();
   var decimal    = option.decimal;
 
-  var defer = Q.defer();
+  var deferred = Q.defer();
   var url = _.template(CURRENCY_API, { from: from, to: to });
   request(url, function(err, res, body) {
     var ratio = parseFloat(body.split(',')[1]);
-
     _.forEach(results[collection], function(val, key) {
       var oldVal = Util.getPropByString(val, property);
       var newVal = parseFloat(ratio * oldVal);
 
       if(decimal !== undefined) {
-        newVal = newVal.toFixed(decimal);
+        newVal = parseFloat(newVal.toFixed(decimal));
       }
-      
       Util.setPropByString(val, property, newVal);
     });
-
-    self.results = results;
-    defer.resolve(self);
+    deferred.resolve();
   });
-
-  return defer.promise;
+  return deferred.promise;
 };
