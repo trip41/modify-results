@@ -307,8 +307,8 @@ Rename one properties.
   - option (Object): The configuration of this transform. It should contain following properties:
 
     - *collection* (String): The collection being modified. Optional if current collection has been set previously via *setCurrentCollection()*.
-    - *property*   (String): The property being renamed.
-    - *newname*    (String): The new name to be used.
+    - *properties* (Array[String]): An array of properties being renamed.
+    - *newnames*   (Array[String]): An array of new names to be used.
 
 
 #####Returns
@@ -333,8 +333,8 @@ var data = {
 new KimFilter(data)
 .setCurrentCollection("collection1")
 .renameProperty({
-  property: 'Data.href',
-  newname: 'link'
+  property: ['ID', 'Data.href'],
+  newname: ['id', 'Data.link']
 })
 .output(function(data) {
   console.log(data);
@@ -345,11 +345,11 @@ new KimFilter(data)
 //   "name": "sample_input",
 //   "results": {
 //     "collection1": [
-//      { "ID": "1", Data: { "Karma": "329 points", "link": "https://abc.com" }},
-//      { "ID": "2", Data: { "Karma": "171 points", "link": "https://def.com" }},
-//      { "ID": "3", Data: { "Karma": "145 points", "link": "https://hij.com" }},
-//      { "ID": "4", Data: { "Karma": "49 points", "link": "https://klm.com"  }},
-//      { "ID": "5", Data: { "Karma": "129 points", "link": "https://nop.com" }}
+//      { "id": "1", Data: { "Karma": "329 points", "link": "https://abc.com" }},
+//      { "id": "2", Data: { "Karma": "171 points", "link": "https://def.com" }},
+//      { "id": "3", Data: { "Karma": "145 points", "link": "https://hij.com" }},
+//      { "id": "4", Data: { "Karma": "49 points", "link": "https://klm.com"  }},
+//      { "id": "5", Data: { "Karma": "129 points", "link": "https://nop.com" }}
 //     ]
 //   }
 // };

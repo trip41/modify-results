@@ -1284,6 +1284,10 @@ new KimFilter(data)
     to: 'CAD',
     decimal: 3
   })
+  .renameProperty({
+    properties: ['num', 'unit', 'Title.href'],
+    newnames: ['Num', 'Unit', 'Title.link']
+  })
   //.remove({
   //  property: 'num',
   //  operator: '>',
