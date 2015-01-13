@@ -12,7 +12,7 @@ A collection of filter functions.
   - <a href="#toInt">toInt </a>
   - <a href="#toFloat">toFloat</a>
   - <a href="#custom">custom</a>
-  - <a href="#deepSelector">deep_selection</a>
+  - <a href="#deep_selection">deep_selection</a>
 
 --------------------------------------------------------------
 #Documentation
