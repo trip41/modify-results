@@ -1,6 +1,6 @@
 var assert    = require('chai').assert;
 var _         = require('lodash');
-var KimFilter = require('../default');
+var KimFilter = require('..');
 var Util      = require('../default/Util.js');
 
 describe('Kimono JS Transforms', function() {
