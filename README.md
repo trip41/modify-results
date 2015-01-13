@@ -647,15 +647,15 @@ new KimFilter(results)
 
 ####<a name="deep_selection">Access/modify nested properties in JSON</a>
 To access/modify properties that are nested in an object, dot notation can be used. For example, to sort collection
-based on 'karma', you can do this:
+based on 'karma' in ascending order, you can do this:
 
 ```javascript
 var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
-      { "ID": "2.", Data: { "Karma": 329, "href": "https://test.com" }},
-      { "ID": "1.", Data: { "Karma": 171, "href": "https://test.com" }},
+      { "ID": "1.", Data: { "Karma": 329, "href": "https://test.com" }},
+      { "ID": "2.", Data: { "Karma": 171, "href": "https://test.com" }},
       { "ID": "3.", Data: { "Karma": 145, "href": "https://test.com" }}
     ]
   }
@@ -676,9 +676,9 @@ new KimFilter(results)
 //   "name": "sample_input",
 //   "results": {
 //     "collection1": [
-//       { "ID": "1.", Data: { "Karma": 329, "href": "https://test.com" }},
+//       { "ID": "3.", Data: { "Karma": 145, "href": "https://test.com" }},
 //       { "ID": "2.", Data: { "Karma": 171, "href": "https://test.com" }},
-//       { "ID": "3.", Data: { "Karma": 145, "href": "https://test.com" }}
+//       { "ID": "1.", Data: { "Karma": 329, "href": "https://test.com" }},
 //     ]
 //  }
 // };
