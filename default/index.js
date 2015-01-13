@@ -6,21 +6,21 @@ var Q       = require('q');
 var filters = {};
 
 [
-  "sort",
-  "split",
-  "merge",
-  "remove",
-  "replace",
-  "removeProp",
-  "toInt",
-  "toFloat",
-  "renameProperty",
-  "renameCollection",
-  "currencyConvert",
-  "custom",
+  'sort',
+  'split',
+  'merge',
+  'remove',
+  'replace',
+  'removeProp',
+  'toInt',
+  'toFloat',
+  'renameProperty',
+  'renameCollection',
+  'currencyConvert',
+  'custom',
 ].forEach(function(filter, idx, arr) {
-  filters[filter] = require('./' + filter + '.js');
-});
+  this[filter] = require('./' + filter + '.js');
+}, filters);
 
 
 function KimFilter(data) {
