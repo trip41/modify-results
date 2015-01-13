@@ -35,7 +35,7 @@ Split one string property into multiple properties according to the separator.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -46,15 +46,15 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .split({
   property: "Karma",
   separator: " ",
   names: ["Num", "Unit"]
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
 });
 
 // will print
@@ -89,7 +89,7 @@ Sort a collection according to the specified property.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -100,14 +100,14 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .split({
   property: "Karma",
   lowToHigh: 1
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // will print
@@ -144,7 +144,7 @@ Remove items in a collection that does not satisfy given conditions
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -157,15 +157,15 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .remove({
   property: 'ID',
   operator: '<=',
   target: 2
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // will print
@@ -201,7 +201,7 @@ Merge mutlitple properties into one property.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -214,15 +214,15 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .merge({
   properties: ['Karma', 'href'],
   newProp: 'Data',
-  newProperies: ['results_karma', 'results_href']
+  newProperies: ['data_karma', 'data_href']
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // will print
@@ -230,11 +230,11 @@ new KimFilter(results)
 //   "name": "sample_input",
 //   "results": {
 //     "collection1": [
-//       { "ID": "1", Data: { "results_karma": "329 points", "results_href": "https://abc.com" }},
-//       { "ID": "2", Data: { "results_karma": "171 points", "results_href": "https://def.com" }},
-//       { "ID": "3", Data: { "results_karma": "145 points", "results_href": "https://hij.com" }},
-//       { "ID": "4", Data: { "results_karma": "49 points", "results_href": "https://klm.com" }},
-//       { "ID": "5", Data: { "results_karma": "129 points", "results_href": "https://nop.com" }}
+//       { "ID": "1", Data: { "data_karma": "329 points", "data_href": "https://abc.com" }},
+//       { "ID": "2", Data: { "data_karma": "171 points", "data_href": "https://def.com" }},
+//       { "ID": "3", Data: { "data_karma": "145 points", "data_href": "https://hij.com" }},
+//       { "ID": "4", Data: { "data_karma": "49 points", "data_href": "https://klm.com" }},
+//       { "ID": "5", Data: { "data_karma": "129 points", "data_href": "https://nop.com" }}
 //     ]
 //   }
 // }
@@ -259,7 +259,7 @@ Remove one or more properteis from collection.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -272,13 +272,13 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .remove({
   properties: ['Karma', 'href']
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // will print
@@ -317,7 +317,7 @@ Rename one properties.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -330,18 +330,18 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .renameProperty({
   property: 'Data.href',
   newname: 'link'
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // // will print
-// var results = {
+// var data = {
 //   "name": "sample_input",
 //   "results": {
 //     "collection1": [
@@ -378,7 +378,7 @@ Rename one collection.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -391,17 +391,17 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .renameCollection({
   newname: 'HackerNews'    
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // // will print
-// var results = {
+// var data = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -428,7 +428,7 @@ The replace method searches a string for a specified value, or a regular express
     - *collection* (String): The collection being named. Optional if current collection has been set previously via *setCurrentCollection()*.
     - *property*   (String): The property whose value is being searched and modified.
     - *from*       (String|RegExp): The value, or regular expression, that will be replaced by the new value.
-    - *to*         (String|RegExp): The value to replace the *from* with.
+    - *to*         (String): The value to replace the *from* with.
 
 #####Returns
   - The *this* binding of the KimFilter object being applied.
@@ -436,7 +436,7 @@ The replace method searches a string for a specified value, or a regular express
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -449,19 +449,19 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .replace({
   property: 'href',
   from: 'https',
   to: 'http'
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // // will print
-// var results = {
+// var data = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -494,7 +494,7 @@ Convert string to integer.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -507,17 +507,17 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .toInt({
   property: 'ID'
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // // will print
-// var results = {
+// var data = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -551,7 +551,7 @@ Convert string to floating point number.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -564,18 +564,18 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .toFloat({
   property: 'Karma',
   decimal: 3
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // // will print
-// var results = {
+// var data = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -605,7 +605,7 @@ Apply user-defined transform functions.
 #####Example
     
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -618,19 +618,19 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .custom(function(results) {
   var collection = 'HackerNews';
   results[collection].forEach(function(entry, idx, arr) {
     entry['timestamp'] = (new Date()).toUTCString();
   });
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // // will print
-// var results = {
+// var data = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -650,7 +650,7 @@ To access/modify properties that are nested in an object, dot notation can be us
 based on 'karma' in ascending order, you can do this:
 
 ```javascript
-var results = {
+var data = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -661,18 +661,18 @@ var results = {
   }
 };
 
-new KimFilter(results)
+new KimFilter(data)
 .setCurrentCollection("collection1")
 .split({
   property: "Data.Karma",
   lowToHigh: 1
 })
-.output(function(results) {
-  console.log(results);
+.output(function(data) {
+  console.log(data);
  });
 
 // will print
-// var results = {
+// var data = {
 //   "name": "sample_input",
 //   "results": {
 //     "collection1": [
