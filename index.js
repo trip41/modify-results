@@ -58,7 +58,7 @@ KimFilter.prototype.setCurrCollection = function(collection) {
 function decorator(fn) {
   var self = this;
   return function(option) {
-    // set current collection if not specified in option
+    // set current collection if not specified in 'option'
     option.collection = option.collection || self.currentCollection;
     
     // enqueue current task
