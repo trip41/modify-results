@@ -1,3 +1,3 @@
 module.exports = function(fn) {
-  this.data = fn.call(this, this.data);
+  this.results = fn.call(this, this.results);
 };

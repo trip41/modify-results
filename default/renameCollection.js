@@ -2,20 +2,20 @@ var _ = require('lodash');
 var Util = require('./Util.js');
 
 module.exports = function(option) {
-  var myself       = this.myself;
-  var data       = this.data;
+  var results       = this.results;
   var collection = option.collection;
   var newname    = option.newname;
 
   // invalid collection
-  if(data[collection] === undefined)  return;
+  if(results[collection] === undefined)  return;
 
-  data[newname] = data[collection];
-  delete data[collection];
+  results[newname] = _.cloneDeep(results[collection]);
+  delete results[collection];
 
+  // TODO: fix it
   // update current collection if renamed 
   if(this.currentCollection === collection)
     this.setCurrCollection(newname);
 
-  this.data = data;
+  this.results = results;
 };

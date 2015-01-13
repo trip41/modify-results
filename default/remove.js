@@ -6,7 +6,7 @@ var SUPPORTED_OPERATORS = [
 ];
 
 module.exports = function(option) {
-  var data       = this.data;
+  var results       = this.results;
   var collection = option.collection;
   var property   = option.property;
   var operator   = option.operator;
@@ -16,7 +16,7 @@ module.exports = function(option) {
   if(!_.contains(SUPPORTED_OPERATORS, operator))
     return this;
 
-  data[collection] = _.filter(data[collection], function(e) {
+  results[collection] = _.filter(results[collection], function(e) {
     var val = Util.getPropByString(e, property);
 
     switch(operator) {
@@ -39,5 +39,5 @@ module.exports = function(option) {
     }
   });
 
-  this.data = data;
+  this.results = results;
 };

@@ -16,6 +16,9 @@ A collection of filter functions.
 --------------------------------------------------------------
 #Documentation
 
+###<a name="selector">Deep Selector</a>
+
+
 ####<a name="split">**split**(*option*)</a>
 
 Split one string property into multiple properties according to the separator.
@@ -34,7 +37,7 @@ Split one string property into multiple properties according to the separator.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -45,15 +48,15 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .split({
   property: "Karma",
   separator: " ",
   names: ["Num", "Unit"]
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // will print
@@ -88,7 +91,7 @@ Sort a collection according to the specified property.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -99,14 +102,14 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .split({
   property: "Karma",
   lowToHigh: 1
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // will print
@@ -143,7 +146,7 @@ Remove items in a collection that does not satisfy given conditions
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -156,15 +159,15 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .remove({
   property: 'ID',
   operator: '<=',
   target: 2
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // will print
@@ -200,7 +203,7 @@ Merge mutlitple properties into one property.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -213,15 +216,15 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .merge({
   properties: ['Karma', 'href'],
   newProp: 'Data',
-  newProperies: ['data_karma', 'data_href']
+  newProperies: ['results_karma', 'results_href']
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // will print
@@ -229,11 +232,11 @@ new KimFilter(data)
 //   "name": "sample_input",
 //   "results": {
 //     "collection1": [
-//       { "ID": "1", Data: { "data_karma": "329 points", "data_href": "https://abc.com" }},
-//       { "ID": "2", Data: { "data_karma": "171 points", "data_href": "https://def.com" }},
-//       { "ID": "3", Data: { "data_karma": "145 points", "data_href": "https://hij.com" }},
-//       { "ID": "4", Data: { "data_karma": "49 points", "data_href": "https://klm.com" }},
-//       { "ID": "5", Data: { "data_karma": "129 points", "data_href": "https://nop.com" }}
+//       { "ID": "1", Data: { "results_karma": "329 points", "results_href": "https://abc.com" }},
+//       { "ID": "2", Data: { "results_karma": "171 points", "results_href": "https://def.com" }},
+//       { "ID": "3", Data: { "results_karma": "145 points", "results_href": "https://hij.com" }},
+//       { "ID": "4", Data: { "results_karma": "49 points", "results_href": "https://klm.com" }},
+//       { "ID": "5", Data: { "results_karma": "129 points", "results_href": "https://nop.com" }}
 //     ]
 //   }
 // }
@@ -258,7 +261,7 @@ Remove one or more properteis from collection.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -271,13 +274,13 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .remove({
   properties: ['Karma', 'href']
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // will print
@@ -316,39 +319,39 @@ Rename one properties.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
-      { "ID": "1", "Karma": "329 points", "href": "https://abc.com" },
-      { "ID": "2", "Karma": "171 points", "href": "https://def.com" },
-      { "ID": "3", "Karma": "145 points", "href": "https://hij.com" },
-      { "ID": "4", "Karma": "49 points", "href": "https://klm.com" },
-      { "ID": "5", "Karma": "129 points", "href": "https://nop.com" }
+      { "ID": "1", Data: { "Karma": "329 points", "href": "https://abc.com" }},
+      { "ID": "2", Data: { "Karma": "171 points", "href": "https://def.com" }},
+      { "ID": "3", Data: { "Karma": "145 points", "href": "https://hij.com" }},
+      { "ID": "4", Data: { "Karma": "49 points", "href": "https://klm.com"  }},
+      { "ID": "5", Data: { "Karma": "129 points", "href": "https://nop.com" }}
     ]
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .renameProperty({
-  property: 'href',
+  property: 'Data.href',
   newname: 'link'
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // // will print
-// var data = {
+// var results = {
 //   "name": "sample_input",
 //   "results": {
 //     "collection1": [
-//       { "ID": "1", "Karma": "329 points", "link": "https://abc.com" },
-//       { "ID": "2", "Karma": "171 points", "link": "https://def.com" },
-//       { "ID": "3", "Karma": "145 points", "link": "https://hij.com" },
-//       { "ID": "4", "Karma": "49 points", "link": "https://klm.com" },
-//       { "ID": "5", "Karma": "129 points", "link": "https://nop.com" }
+//      { "ID": "1", Data: { "Karma": "329 points", "link": "https://abc.com" }},
+//      { "ID": "2", Data: { "Karma": "171 points", "link": "https://def.com" }},
+//      { "ID": "3", Data: { "Karma": "145 points", "link": "https://hij.com" }},
+//      { "ID": "4", Data: { "Karma": "49 points", "link": "https://klm.com"  }},
+//      { "ID": "5", Data: { "Karma": "129 points", "link": "https://nop.com" }}
 //     ]
 //   }
 // };
@@ -377,7 +380,7 @@ Rename one collection.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -390,17 +393,17 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .renameCollection({
   newname: 'HackerNews'    
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // // will print
-// var data = {
+// var results = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -435,7 +438,7 @@ The replace method searches a string for a specified value, or a regular express
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -448,19 +451,19 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .replace({
   property: 'href',
   from: 'https',
   to: 'http'
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // // will print
-// var data = {
+// var results = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -493,7 +496,7 @@ Convert string to integer.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -506,17 +509,17 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .toInt({
   property: 'ID'
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // // will print
-// var data = {
+// var results = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -550,7 +553,7 @@ Convert string to floating point number.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -563,18 +566,18 @@ var data = {
   }
 };
 
-new KimFilter(data)
+new KimFilter(results)
 .setCurrentCollection("collection1")
 .toFloat({
   property: 'Karma',
   decimal: 3
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // // will print
-// var data = {
+// var results = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [
@@ -596,7 +599,7 @@ new KimFilter(data)
 Apply user-defined transform functions.
 
 #####Arguments
-  - fn (Function): The user-defined transform function being applied. The *data* object will be passed to this function.
+  - fn (Function): The user-defined transform function being applied. The *results* object will be passed to this function.
 
 #####Returns
   - The *this* binding of the KimFilter object being applied.
@@ -604,7 +607,7 @@ Apply user-defined transform functions.
 #####Example
     
 ```javascript
-var data = {
+var results = {
   "name": "sample_input",
   "results": {
     "collection1": [
@@ -617,19 +620,19 @@ var data = {
   }
 };
 
-new KimFilter(data)
-.custom(function(data) {
+new KimFilter(results)
+.custom(function(results) {
   var collection = 'HackerNews';
-  data[collection].forEach(function(entry, idx, arr) {
+  results[collection].forEach(function(entry, idx, arr) {
     entry['timestamp'] = (new Date()).toUTCString();
   });
 })
-.output(function(data) {
-  console.log(data);
+.output(function(results) {
+  console.log(results);
  });
 
 // // will print
-// var data = {
+// var results = {
 //   "name": "sample_input",
 //   "results": {
 //     "HackerNews": [

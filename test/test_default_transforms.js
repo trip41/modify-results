@@ -42,7 +42,7 @@ describe('Kimono JS Transforms', function() {
     //                            Sort
     //==================================================================
     describe('Sort', function() {
-      it('should sorty data in descending order', function(done) {
+      it('should sort data in descending order', function(done) {
         (new KimFilter(testData))
         .setCurrCollection('c1')
         .sort({
@@ -51,7 +51,6 @@ describe('Kimono JS Transforms', function() {
         })
         .output(function(result) {
           var sorted = { name: 'testData', results: { 'c1': [ { key: 3, val: "data3"}, { key: 2, val: "data2"}, { key: 1, val: "data1" }]}};
-
           assert.equal(_.isEqual(result, sorted), true);
           done();
         });
@@ -349,7 +348,7 @@ describe('Kimono JS Transforms', function() {
         .setCurrCollection('c1')
         .remove({
           property: 'second',
-          operator: '>',
+          operator: '<=',
           target: 2
         })
         .output(function(result) {

@@ -1,9 +1,9 @@
 var _ = require('lodash');
 
 module.exports = function(option) {
-  var data       = this.data;
+  var results       = this.results;
   var collection = option.collection;
   var attrName   = option.attrName;
 
-  this.data = data;
+  this.results = results;
 };

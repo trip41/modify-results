@@ -9,11 +9,8 @@ module.exports = {
           prop = props[i];
 
           var candidate = obj[prop];
-          if (candidate !== undefined) {
-              obj = candidate;
-          } else {
-            return;
-          }
+          if (candidate !== undefined) obj = candidate;
+          else return;
       }
       return obj[props[i]];
   },
@@ -27,11 +24,8 @@ module.exports = {
       prop = props[i];
 
       var candidate = obj[prop];
-      if(candidate !== undefined) {
-        obj = candidate;
-      } else {
-        return;
-      }
+      if (candidate !== undefined) obj = candidate;
+      else return;
     }
 
     obj[props[i]] = val;
@@ -46,11 +40,8 @@ module.exports = {
       prop = props[i];
 
       var candidate = obj[prop];
-      if(candidate !== undefined) {
-        obj = candidate;
-      } else {
-        return;
-      }
+      if (candidate !== undefined) obj = candidate;
+      else return;
     }
     
     delete obj[props[i]];

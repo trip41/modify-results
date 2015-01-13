@@ -20,19 +20,18 @@ var filters = {
 
   //not ready
   //TimeDateConvert  : require('./TimeDateConvert.js')
-  //currencyConvert  : require('./currencyConvert.js')
 };
 
-function KimFilter(data, query) {
+function KimFilter(data) {
   var self     = this;
-  self.wrapper = data;
+  self.data    = data;
   self.query   = data.query;
-  self.data    = data.results;
+  self.results = data.results;
 
   self.currentCollection = '';
   self.tasks = [];
 
-  // methods with preprecessing
+  // decorate methods
   _.forEach(filters, function(val, key) {
     self[key] = decorator.call(self, val);
   });
@@ -41,14 +40,14 @@ function KimFilter(data, query) {
 KimFilter.prototype.output = function(fn) {
   var self = this;
 
-  // execute all tasks sequentially and return the data
+  // execute tasks sequentially and pass result to the callback
   return self.tasks.reduce(function(soFar, task) {
     return soFar.then(function() { return task; });
   }, Q(0))
   .then(function() {
-    // remove query from data object
-    delete self.wrapper.query;
-    fn(self.wrapper);
+    // remove query from results object
+    delete self.data.query;
+    return fn(self.data);
   });
 };
 
@@ -60,21 +59,19 @@ KimFilter.prototype.setCurrCollection = function(collection) {
 function decorator(fn) {
   var self = this;
   return function(option) {
-    // set current collection if not specified
-    if(option.collection === undefined) {
-      option['collection'] = self.currentCollection;
-    }
+    // set current collection if not specified in option
+    option.collection = option.collection || self.currentCollection;
 
-    //if(false) {
-    if(!self.query || !self.query.kimbypage) {
-      self.tasks.push(Q(fn.call(self, option)));
-    } else {
-      self.data.forEach(function(entry, idx, arr) {
-        var dataTmp = self.data;
-        self.data = entry;
+    //if(self.query && self.query.kimbypage) {
+    if(true) {
+      self.results.forEach(function(entry, idx, arr) {
+        var resultsTmp = self.results;
+        self.results = entry;
         self.tasks.push(Q(fn.call(self, option)));
-        self.data = dataTmp;
+        self.results = resultsTmp;
       });
+    } else {
+      self.tasks.push(Q(fn.call(self, option)));
     }
     return self;
   };

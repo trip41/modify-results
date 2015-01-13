@@ -7,7 +7,7 @@ var CURRENCY_API = 'http://finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s=${f
 
 module.exports = function(option) {
   var self       = this;
-  var data       = this.data;
+  var results       = this.results;
   var collection = option.collection;
   var property   = option.property;
   var from       = option.from.toUpperCase();
@@ -19,7 +19,7 @@ module.exports = function(option) {
   request(url, function(err, res, body) {
     var ratio = parseFloat(body.split(',')[1]);
 
-    _.forEach(data[collection], function(val, key) {
+    _.forEach(results[collection], function(val, key) {
       var oldVal = Util.getPropByString(val, property);
       var newVal = parseFloat(ratio * oldVal);
 
@@ -30,7 +30,7 @@ module.exports = function(option) {
       Util.setPropByString(val, property, newVal);
     });
 
-    self.data = data;
+    self.results = results;
     defer.resolve(self);
   });
 

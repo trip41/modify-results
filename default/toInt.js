@@ -2,14 +2,14 @@ var _ = require('lodash');
 var Util = require('./Util.js');
 
 module.exports = function(option) {
-  var data       = this.data;
+  var results       = this.results;
   var collection = option.collection;
   var property   = option.property;
 
-  data[collection] = _.map(data[collection], function(e) {
+  results[collection] = _.map(results[collection], function(e) {
     Util.setPropByString(e, property, parseInt(Util.getPropByString(e, property)));
     return e;
   });
 
-  this.data = data;
+  this.results = results;
 };
