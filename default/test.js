@@ -1285,8 +1285,8 @@ new KimFilter(data)
     decimal: 3
   })
   .renameProperty({
-    properties: ['num', 'unit', 'Title.href'],
-    newnames: ['Num', 'Unit', 'Title.link']
+    properties: ['num', 'unit'],
+    newnames: ['Num', 'Unit']
   })
   //.remove({
   //  property: 'num',

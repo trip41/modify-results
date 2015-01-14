@@ -41,6 +41,7 @@ KimFilter.prototype.executeAllTasks = function() {
 
 KimFilter.prototype.output = function(fn) {
   var self = this;
+  delete self.data.query;
   self.executeAllTasks().then(function() {
     fn(null, self.data);
   }, function(err){ 

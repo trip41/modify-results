@@ -19,9 +19,7 @@ module.exports = function(results, option) {
     }
 
     names = _.map(names, function(name, idx) {
-      return prefix === ''
-        ? name
-        : prefix + '.' + name;
+      return prefix === '' ? name : prefix + '.' + name;
     });
 
     _.forEach(names, function(key, idx) {

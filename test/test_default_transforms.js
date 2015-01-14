@@ -1,6 +1,6 @@
 var assert    = require('chai').assert;
 var _         = require('lodash');
-var KimFilter = require('..');
+var KimFilter = require('../index.js');
 var Util      = require('../default/Util.js');
 
 describe('Kimono JS Transforms', function() {
@@ -441,6 +441,9 @@ describe('Kimono JS Transforms', function() {
           newnames: ['newprop']
         })
         .output(function(err, result) {
+          //_.forEach(result.results.c1, function(val, key, idx) {
+          //  console.log(val);
+          //});
           var removed = { name: 'testData', results: { 'c1': [ { key: 1, val: "data 1"}, { key: 2, val: "data 2"}, { key: 3, val: "data 3" }]}};
           assert.deepEqual(removed, result);
           done();
