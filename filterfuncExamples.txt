@@ -1,0 +1,188 @@
+Filter Function Examples
+
+    - Ex1
+      
+      Description: Add a new property 'totalPoints 'to `data`, which is the sum of points of all users in all collections.
+
+        // before
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "1.", "Karma": "329 points" },
+              { "ID": "2.", "Karma": "171 points" },
+              { "ID": "3.", "Karma": "145 points" }
+            ],
+            "collection2": [
+              { "ID": "4.", "Karma": "292 points" },
+              { "ID": "5.", "Karma": "142 points" },
+              { "ID": "6.", "Karma": "314 points" }
+            ]
+          }
+        };
+
+        // filter function
+        var totalPoints = 0;
+        for(var collection in data.results) {
+          data.results[collection].forEach(function(row) {
+            var pts = row.Karma.split(' ')[0];
+            totalPoints += parseInt(pts);
+          });
+        };
+        data.totalPoints = totalPoints;
+
+        // after 
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "1.", "Karma": "329 points" },
+              { "ID": "2.", "Karma": "171 points" },
+              { "ID": "3.", "Karma": "145 points" }
+            ],
+            "collection2": [
+              { "ID": "4.", "Karma": "292 points" },
+              { "ID": "5.", "Karma": "142 points" },
+              { "ID": "6.", "Karma": "314 points" }
+            ]
+          },
+          "totalPoints": 1391
+        };
+
+
+    - Ex2
+
+      Description: Augment each row with the the difference of Karmas between January and Febuary.
+
+        // before
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "1.", "Karma_Jan": 329, "Karma_Feb": 188 },
+              { "ID": "2.", "Karma_Jan": 171, "Karma_Feb": 321 },
+              { "ID": "3.", "Karma_Jan": 145, "Karma_Feb": 211 }
+            ],
+            "collection2": [
+              { "ID": "4.", "Karma_Jan": 292, "Karma_Feb": 461 },
+              { "ID": "5.", "Karma_Jan": 142, "Karma_Feb": 131 },
+              { "ID": "6.", "Karma_Jan": 314, "Karma_Feb": 410 }
+            ]
+          }
+        };
+
+        function calcDiff(user) { 
+          user['Karma_Diff'] = user['Karma_Feb'] - user['Karma_Jan'];
+          return row;
+        }
+
+        for(var collection in data.results) {
+          data.results[collection] = data.results[collection].map(calcDiff);
+        };
+
+        // after 
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "1.", "Karma_Jan": 329, "Karma_Feb": 188, "Karma_Diff": -141 },
+              { "ID": "2.", "Karma_Jan": 171, "Karma_Feb": 321, "Karma_Diff": 150 },
+              { "ID": "3.", "Karma_Jan": 145, "Karma_Feb": 211, "Karma_Diff": 66 }
+            ],
+            "collection2": [
+              { "ID": "4.", "Karma_Jan": 292, "Karma_Feb": 461, "Karma_Diff": 169 },
+              { "ID": "5.", "Karma_Jan": 142, "Karma_Feb": 131, "Karma_Diff": -11 },
+              { "ID": "6.", "Karma_Jan": 314, "Karma_Feb": 410, "Karma_Diff": 96 }
+            ]
+          }
+        };
+
+
+    - Ex3
+
+      Description: Sort rows in each collection from low to high based on Karma.
+
+        // before
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "1.", "Karma": 329 },
+              { "ID": "2.", "Karma": 171 },
+              { "ID": "3.", "Karma": 145 }
+            ],
+            "collection2": [
+              { "ID": "4.", "Karma": 292 },
+              { "ID": "5.", "Karma": 142 },
+              { "ID": "6.", "Karma": 314 }
+            ]
+          }
+        };
+
+        for(var collection in data.results) {
+          data.results[collection].sort(function(a, b) {
+            return a.Karma - b.Karma;
+          });
+        }
+
+        // after 
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "3.", "Karma": 145 }
+              { "ID": "2.", "Karma": 171 },
+              { "ID": "1.", "Karma": 329 },
+            ],
+            "collection2": [
+              { "ID": "5.", "Karma": 142 },
+              { "ID": "4.", "Karma": 292 },
+              { "ID": "6.", "Karma": 314 }
+            ]
+          }
+        };
+
+
+    - Ex4
+
+      Description: filter out users(i.e rows) with less than 200 Karma.
+
+        // before
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "1.", "Karma": 329 },
+              { "ID": "2.", "Karma": 171 },
+              { "ID": "3.", "Karma": 145 }
+            ],
+            "collection2": [
+              { "ID": "4.", "Karma": 292 },
+              { "ID": "5.", "Karma": 142 },
+              { "ID": "6.", "Karma": 314 }
+            ]
+          }
+        };
+
+        function isTopUser(user) {
+          return user.Karma >= 200;
+        }
+
+        // filter function
+        for(var collection in data.results) {
+          data.results[collection].filter(isTopUser);
+        };
+
+        // after 
+        data = {
+          "name": "sample_input",
+          "results": {
+            "collection1": [
+              { "ID": "1.", "Karma": 329 }
+            ],
+            "collection2": [
+              { "ID": "4.", "Karma": 292 },
+              { "ID": "6.", "Karma": 314 }
+            ]
+          }
+        };

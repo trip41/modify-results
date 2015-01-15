@@ -12,7 +12,7 @@ function KimFilter(data) {
   self.tasks = [];
 
   // decorate methods
-  _.forEach(filters, function(fn, fn_name) {
+  _(filters).forEach(function(fn, fn_name) {
     self[fn_name] = decorator.call(self, fn);
   });
 };
@@ -20,13 +20,12 @@ function KimFilter(data) {
 
 KimFilter.prototype.executeSingleTask = function(task) {
   var self = this;
-  if(self.query && self.query.kimbypage) {
-    // handle each page separately, no need to execute sequentially
-    return Q.all(self.results.map(function(pageResults, idx, arr) {
+  if(!self.query || !self.query.kimbypage) {
+    return Q(task.fn(self.results, task.option));
+  } else {
+    return Q.all(self.results.map(function(pageResults) {
       return Q(task.fn(pageResults, task.option));
     }));
-  } else {
-    return Q(task.fn(self.results, task.option));
   }
 };
 
